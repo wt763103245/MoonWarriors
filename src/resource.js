@@ -13,7 +13,7 @@ var res = {
     TextureTransparentPack_png : "res/mainMenu/textureTransparentPack.png",
     mm_bg_png   : "res/mainMenu/bg.png",
     mm_logo_png : "res/mainMenu/logo.png",
-    mm_mune_png : "res/mainMenu/menu.png",
+    mm_menu_png : "res/mainMenu/menu.png",
     mm_flare_jpg : "res/mainMenu/flare.jpg",
     mm_btnEffect : "res/sound/effect/buttonEffect.mp3",
     mm_bgMusic_mp3 : "res/sound/music/mainMainMusic.mp3",
