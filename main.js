@@ -70,7 +70,9 @@ cc.game.onStart = function(){
     cc.view.resizeWithBrowserSize(true);
     //load resources
     cc.LoaderScene.preload(g_resources, function () {
-        cc.director.runScene(new HelloWorldScene());
+        // cc.director.runScene(new HelloWorldScene());
+        //修改成主界面成
+        cc.director.runScene(new MainMenuScene());
     }, this);
 };
 cc.game.run();
