@@ -1,3 +1,11 @@
+/*
+ * @Author: 萌新王
+ * @Date: 2023-09-04 17:18:03
+ * @LastEditors: 萌新王
+ * @LastEditTime: 2023-09-04 18:32:24
+ * @FilePath: \OneDrive\program\js\MoonWarriors\src\gameOver\layer\GOTouchLayer.js
+ * @Email: 763103245@qq.com
+ */
 var GOTouchLayer = cc.Layer.extend({
 
     ctor : function(){
@@ -19,9 +27,9 @@ var GOTouchLayer = cc.Layer.extend({
     },
     initTouchAbout : function(){
 
-        var playAgainNormal = new cc.Sprite(res.mm_mune_png, cc.rect(378, 0, 126, 33));
-        var playAgainSelected = new cc.Sprite(res.mm_mune_png, cc.rect(378, 33, 126, 33));
-        var playAgainDisabled = new cc.Sprite(res.mm_mune_png, cc.rect(378, 33 * 2, 126, 33));
+        var playAgainNormal = new cc.Sprite(res.mm_menu_png, cc.rect(378, 0, 126, 33));
+        var playAgainSelected = new cc.Sprite(res.mm_menu_png, cc.rect(378, 33, 126, 33));
+        var playAgainDisabled = new cc.Sprite(res.mm_menu_png, cc.rect(378, 33 * 2, 126, 33));
 
         var playAgain = new cc.MenuItemSprite(
             playAgainNormal,
