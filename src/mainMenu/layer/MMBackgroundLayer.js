@@ -6,6 +6,7 @@
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\mainMenu\layer\MMBackgroundLayer.js
  * @Email: 763103245@qq.com
  */
+/**添加不可交互的背景层相关 */
 var MMBackgroundLayer = cc.Layer.extend({
     /**@type {cc.Sprite} 主界面背景精灵 */
     _sptBg: null,

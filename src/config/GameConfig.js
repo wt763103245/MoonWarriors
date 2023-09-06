@@ -18,8 +18,8 @@ GC.w = GC.winSize.width;
 GC.w_2 = GC.winSize.width / 2;
 
 GC.h_2 = GC.winSize.height / 2;
-
-GC.SOUND_ON = true;
+/**@type {Boolean} 背景音乐开关，默认关闭 */
+GC.SOUND_ON = false;
 
 GC.GAME_STATE_ENUM = {
     HOME: 0,

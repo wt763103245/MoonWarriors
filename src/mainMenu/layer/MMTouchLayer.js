@@ -2,32 +2,33 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-04 18:31:48
+ * @LastEditTime: 2023-09-06 17:20:27
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\mainMenu\layer\MMTouchLayer.js
  * @Email: 763103245@qq.com
  */
+/**触摸层，交互相关 */
 var MMTouchLayer = cc.Layer.extend({
-    ctor : function(){
+    ctor: function () {
         this._super();
+        //播放背景音乐
         this.playMusic();
+        //初始化菜单
         this.initMenu();
     },
-    playMusic : function(){
-        //播放背景音乐，true代表循环无限次播放，false表示只播放一次。
-        if (GC.SOUND_ON){
-            if (cc.audioEngine.isMusicPlaying()){
-                return;
-            }
-            cc.audioEngine.playMusic(res.mm_bgMusic_mp3, true);
-        }
+    /**播放背景音乐 */
+    playMusic: function () {
+        //是否已经播放。播放背景音乐，并无限循环。true代表循环无限次播放，false表示只播放一次。
+        GC.SOUND_ON && !cc.audioEngine.isMusicPlaying() && cc.audioEngine.playMusic(res.mm_bgMusic_mp3, true);
     },
-    initMenu : function(){
+    /**初始化菜单 */
+    initMenu: function () {
         var flare = new cc.Sprite(res.mm_flare_jpg);
         //设置flare 为不可见
         flare.visible = false;
         this.addChild(flare, 10);
         //根据rect区域去创建一个精灵，作为下面menuItemSprite显示的图片。
         //因为menuItem有Normal、Selected、Disabled三个状态，所以一个菜单项需要三张纹理图片
+        //裁剪图片作为新的精灵
         var newGameNormal = new cc.Sprite(res.mm_menu_png, cc.rect(0, 0, 126, 33));
         var newGameSelected = new cc.Sprite(res.mm_menu_png, cc.rect(0, 33, 126, 33));
         var newGameDisabled = new cc.Sprite(res.mm_menu_png, cc.rect(0, 66, 126, 33));
@@ -48,26 +49,32 @@ var MMTouchLayer = cc.Layer.extend({
             this.onNewGame(),
             this
         );*/
+        /**开始按钮的按钮状态 */
         var newGame = new cc.MenuItemSprite(
             newGameNormal,
             newGameSelected,
             newGameDisabled,
-            function(){
+            /**点击回调 */
+            function () {
                 this.onButtonEffect();
                 this.flareEffect(flare, this, this.onNewGame);
             }.bind(this)
         );
+        /**设置按钮的按钮状态 */
         var gameSettings = new cc.MenuItemSprite(
             gameSettingsNormal,
             gameSettingsSelected,
             gameSettingsDisabled,
+            /**点击回调 */
             this.onSettings,
             this
         );
+        /**关于按钮的按钮状态 */
         var about = new cc.MenuItemSprite(
             aboutNormal,
             aboutSelected,
             aboutDisabled,
+            /**点击回调 */
             this.onAbout,
             this
         );
@@ -78,25 +85,29 @@ var MMTouchLayer = cc.Layer.extend({
         menu.y = GC.h_2 - 80;
         this.addChild(menu, 1, 2);
     },
-    onNewGame : function(){
+    /**开始新游戏 */
+    onNewGame: function () {
         cc.audioEngine.stopMusic();
         //场景切换，并且指定切换效果，更多效果，参考引擎包samples/js-tests下的Transitions Test
         cc.director.runScene(new cc.TransitionFade(1.2, new GamePlayScene()));
     },
-    onSettings : function(){
+    /**进入设置 */
+    onSettings: function () {
         this.onButtonEffect();
         cc.director.runScene(new cc.TransitionFade(1.2, new SettingScene()));
     },
-    onAbout : function(){
+    /**打开设置界面 */
+    onAbout: function () {
         this.onButtonEffect();
         cc.director.runScene(new cc.TransitionFade(1.2, new AboutScene()));
     },
-    onButtonEffect : function(){
+    onButtonEffect: function () {
         if (GC.SOUND_ON) {
             cc.audioEngine.playEffect(res.mm_btnEffect);
         }
     },
-    flareEffect : function(flare,target, callback){
+    /**标题特效 */
+    flareEffect: function (flare, target, callback) {
         flare.stopAllActions();
         //设置flare 的渲染混合模式
         flare.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
@@ -120,10 +131,10 @@ var MMTouchLayer = cc.Layer.extend({
         //函数回调动作
         var onComplete = cc.callFunc(callback, target);
         var killflare = cc.callFunc(function () {
-            this.getParent().removeChild(this,true);
+            this.getParent().removeChild(this, true);
         }, flare);
         //按顺序执行一组动作
-        var seqAction = cc.sequence(opacityAnim, biggerEase,onComplete);
+        var seqAction = cc.sequence(opacityAnim, biggerEase, onComplete);
         //同时执行一组动作
         var action = cc.spawn(seqAction, easeMove, rotateEase, bigger);
         flare.runAction(action);
