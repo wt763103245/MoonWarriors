@@ -28,9 +28,11 @@ var MMBackgroundLayer = cc.Layer.extend({
     },
     /**初始化背景 */
     initBackground: function () {
+        /**@type {String} 添加图片缓存 */
+        var cacheImage = cc.textureCache.addImage(res.mm_bg_png);
         //创建一个精灵作为背景，并且设置它的锚点为cc.p(0.5, 0.5)[锚点默认为0.5], 以及坐标定位在屏幕中间
         /**@type {cc.Sprite} */
-        this._sptBg = new cc.Sprite(res.mm_bg_png);
+        this._sptBg = new cc.Sprite(cacheImage);
         //修改精灵属性
         this._sptBg.attr({
             //修改锚点位置
@@ -45,8 +47,10 @@ var MMBackgroundLayer = cc.Layer.extend({
     },
     /**初始化logo */
     initLogo: function () {
+        /**@type {String} 添加图片缓存 */
+        var cacheImage = cc.textureCache.addImage(res.mm_logo_png);
         /**@type {cc.Sprite} 主界面logo精灵 */
-        this._sptLogo = new cc.Sprite(res.mm_logo_png);
+        this._sptLogo = new cc.Sprite(cacheImage);
         //设置精灵属性
         this._sptLogo.attr({
             //修改位置

@@ -22,24 +22,28 @@ var MMTouchLayer = cc.Layer.extend({
     },
     /**初始化菜单 */
     initMenu: function () {
-        var flare = new cc.Sprite(res.mm_flare_jpg);
+        /**@type {String} 添加图片缓存 */
+        var cacheImage = cc.textureCache.addImage(res.mm_flare_jpg);
+        var flare = new cc.Sprite(cacheImage);
         //设置flare 为不可见
         flare.visible = false;
         this.addChild(flare, 10);
+        /**@type {String} 添加图片缓存 */
+        cacheImage = cc.textureCache.addImage(res.mm_menu_png);
         //根据rect区域去创建一个精灵，作为下面menuItemSprite显示的图片。
         //因为menuItem有Normal、Selected、Disabled三个状态，所以一个菜单项需要三张纹理图片
         //裁剪图片作为新的精灵
-        var newGameNormal = new cc.Sprite(res.mm_menu_png, cc.rect(0, 0, 126, 33));
-        var newGameSelected = new cc.Sprite(res.mm_menu_png, cc.rect(0, 33, 126, 33));
-        var newGameDisabled = new cc.Sprite(res.mm_menu_png, cc.rect(0, 66, 126, 33));
+        var newGameNormal = new cc.Sprite(cacheImage, cc.rect(0, 0, 126, 33));
+        var newGameSelected = new cc.Sprite(cacheImage, cc.rect(0, 33, 126, 33));
+        var newGameDisabled = new cc.Sprite(cacheImage, cc.rect(0, 66, 126, 33));
 
-        var gameSettingsNormal = new cc.Sprite(res.mm_menu_png, cc.rect(126, 0, 126, 33));
-        var gameSettingsSelected = new cc.Sprite(res.mm_menu_png, cc.rect(126, 33, 126, 33));
-        var gameSettingsDisabled = new cc.Sprite(res.mm_menu_png, cc.rect(126, 33 * 2, 126, 33));
+        var gameSettingsNormal = new cc.Sprite(cacheImage, cc.rect(126, 0, 126, 33));
+        var gameSettingsSelected = new cc.Sprite(cacheImage, cc.rect(126, 33, 126, 33));
+        var gameSettingsDisabled = new cc.Sprite(cacheImage, cc.rect(126, 33 * 2, 126, 33));
 
-        var aboutNormal = new cc.Sprite(res.mm_menu_png, cc.rect(252, 0, 126, 33));
-        var aboutSelected = new cc.Sprite(res.mm_menu_png, cc.rect(252, 33, 126, 33));
-        var aboutDisabled = new cc.Sprite(res.mm_menu_png, cc.rect(252, 33 * 2, 126, 33));
+        var aboutNormal = new cc.Sprite(cacheImage, cc.rect(252, 0, 126, 33));
+        var aboutSelected = new cc.Sprite(cacheImage, cc.rect(252, 33, 126, 33));
+        var aboutDisabled = new cc.Sprite(cacheImage, cc.rect(252, 33 * 2, 126, 33));
 
         //三个菜单项，并且指定菜单项点击所会执行的函数
         /*var newGame = new cc.MenuItemSprite(
