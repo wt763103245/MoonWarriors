@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-06 19:01:52
+ * @LastEditTime: 2023-09-06 19:28:07
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\about\layer\ABTouchLayer.js
  * @Email: 763103245@qq.com
  */
@@ -45,7 +45,6 @@ var ABTouchLayer = cc.Layer.extend({
         menu.x = GC.w_2;
         menu.y = 40;
         this.addChild(menu);
-
     },
     onBackCallback: function () {
         // cc.log("[STTouchLayer] : onBack");
