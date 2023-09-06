@@ -34,7 +34,8 @@ var res = {
 
 //gameOver
     go_gameOver_png : "res/gameOver/gameOver.png",
-    go_cocos2d_html5_png : "res/gameOver/cocos2d-html5.png"
+    go_cocos2d_html5_png : "res/gameOver/cocos2d-html5.png",
+
 
 };
 

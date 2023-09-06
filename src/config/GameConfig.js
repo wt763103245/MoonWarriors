@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-04 18:03:06
+ * @LastEditTime: 2023-09-06 18:10:54
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\config\GameConfig.js
  * @Email: 763103245@qq.com
  */
