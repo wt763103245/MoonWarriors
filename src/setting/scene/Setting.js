@@ -1,30 +1,37 @@
+/*
+ * @Author: 萌新王
+ * @Date: 2023-09-04 17:18:03
+ * @LastEditors: 萌新王
+ * @LastEditTime: 2023-09-06 17:29:52
+ * @FilePath: \OneDrive\program\js\MoonWarriors\src\setting\scene\Setting.js
+ * @Email: 763103245@qq.com
+ */
+/**设置界面 */
 var SettingLayer = cc.Layer.extend({
-
-    _backgroundLayer : null,
-    _touchLayer : null,
-    ctor : function(){
-
+    /**设置界面背景层 */
+    _backgroundLayer: null,
+    /**触摸层 */
+    _touchLayer: null,
+    ctor: function () {
         this._super()
-
+        //添加设置界面的背景
         this.addBackgroundLayer();
-
+        //添加触摸层
         this.addTouchLayer();
-
     },
-
-    addBackgroundLayer : function(){
+    /**添加背景层 */
+    addBackgroundLayer: function () {
         this._backgroundLayer = new STBackgroundLayer();
         this.addChild(this._backgroundLayer);
     },
-    addTouchLayer : function(){
+    /**添加触摸层 */
+    addTouchLayer: function () {
         this._touchLayer = new STTouchLayer();
         this.addChild(this._touchLayer);
     }
 });
-
-
-var SettingScene  = cc.Scene.extend({
-    onEnter:function () {
+var SettingScene = cc.Scene.extend({
+    onEnter: function () {
         this._super();
 
         var layer = new SettingLayer();

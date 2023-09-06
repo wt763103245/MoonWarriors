@@ -9,3 +9,19 @@
 var LanguageCh = {};
 
 LanguageCh.MainMenu = "主菜单";
+/**设置音乐的文本 */
+LanguageCh.Sound = "音乐";
+/**设置开启的文本 */
+LanguageCh.On = "开";
+/**设置关闭的文本 */
+LanguageCh.Off = "关";
+/**设置游戏难度的文本 */
+LanguageCh.GameMode = "难度";
+/**设置简单的文本 */
+LanguageCh.Easy = "简单";
+/**设置普通的文本 */
+LanguageCh.Normal = "普通";
+/**设置困难的文本 */
+LanguageCh.Hard = "困难";
+/**设置返回按钮的文本 */
+LanguageEn.Back = "返回";
