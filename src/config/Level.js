@@ -1,7 +1,12 @@
-/**
- * Created by lingjianfeng on 14-8-31.
+/*
+ * @Author: 萌新王
+ * @Date: 2023-09-04 17:18:03
+ * @LastEditors: 萌新王
+ * @LastEditTime: 2023-09-06 20:02:12
+ * @FilePath: \OneDrive\program\js\MoonWarriors\src\config\Level.js
+ * @Email: 763103245@qq.com
  */
-
+/**游戏等级1？ */
 var Level1 = {
     enemyMax:6,
     enemies:[

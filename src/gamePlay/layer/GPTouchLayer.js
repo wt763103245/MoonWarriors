@@ -1,36 +1,53 @@
+/*
+ * @Author: 萌新王
+ * @Date: 2023-09-04 17:18:03
+ * @LastEditors: 萌新王
+ * @LastEditTime: 2023-09-06 19:52:24
+ * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\layer\GPTouchLayer.js
+ * @Email: 763103245@qq.com
+ */
+//游戏状态
+/**@type {Number} 游戏中 */
 STATE_PLAYING = 0;
+/**@type {Number} 游戏结束 */
 STATE_GAMEOVER = 1;
 
 MAX_CONTAINT_WIDTH = 40;
 MAX_CONTAINT_HEIGHT = 40;
 
 //当前层对外引用，也就是说，可以在其他地方直接通过g_GPTouchLayer指向当前层，从而获取当前层里面的属性和方法等等。
+/**@type {cc.Layer} 当前运行中的游戏层 */
 var g_GPTouchLayer;
 var GPTouchLayer = cc.Layer.extend({
-    _texOpaqueBatch : null,
-    _texTransparentBatch : null,
-    _lbScore : null,
-    _ship : null,
-    _state : STATE_PLAYING,
-    _time : null,
-    _tmpScore : 0,
-    _lbLife : null,
-    _explosions : null,
-    ctor : function(){
+    _texOpaqueBatch: null,
+    _texTransparentBatch: null,
+    _lbScore: null,
+    _ship: null,
+    /**@type {Number} 当前游戏状态 */
+    _state: STATE_PLAYING,
+    _time: null,
+    _tmpScore: 0,
+    _lbLife: null,
+    _explosions: null,
+    ctor: function () {
         this._super();
         this.playMusic();
-
-        GC.SCORE = 0;
         //重置相关信息
+        /**@type {Number} 玩家分数，重置 */
+        GC.SCORE = 0;
+        //重置游戏场景中的物体
         GC.CONTAINER.SPARKS = [];
         GC.CONTAINER.ENEMIES = [];
         GC.CONTAINER.ENEMY_BULLETS = [];
         GC.CONTAINER.PLAYER_BULLETS = [];
         GC.CONTAINER.EXPLOSIONS = [];
+        //重置游戏状态
         GC.GAME_STATE = GC.GAME_STATE_ENUM.PLAY;
         //指向当前层
         g_GPTouchLayer = this;
+        /**@type {Number} 设置当前游戏状态 */
         this._state = STATE_PLAYING;
+        /**@type {LevelManager} 难度等级控制器类 */
         this._levelManager = new LevelManager(this);
         this.initBatchNode();
         this.initAboutInfo();
@@ -43,12 +60,12 @@ var GPTouchLayer = cc.Layer.extend({
         //SparkEffectSprite.preSet();
         //ExplosionSprite.preSet();
     },
-    playMusic : function(){
-        if (GC.SOUND_ON){
+    playMusic: function () {
+        if (GC.SOUND_ON) {
             cc.audioEngine.playMusic(res.gp_bgMusic_mp3, true);
         }
     },
-    initBatchNode : function(){
+    initBatchNode: function () {
         //创建3个BatchNode，并为其中一个设置渲染方式
         //光效
         var texOpaque = cc.textureCache.addImage(res.gp_TextureOpaquePack_png);
@@ -65,7 +82,7 @@ var GPTouchLayer = cc.Layer.extend({
         this._explosions.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
         this.addChild(this._explosions);
     },
-    initAboutInfo : function(){
+    initAboutInfo: function () {
         //分数
         this._lbScore = new cc.LabelBMFont("Score: 0", res.sh_arial_14_fnt);
         this._lbScore.attr({
@@ -87,22 +104,22 @@ var GPTouchLayer = cc.Layer.extend({
         //生命数量
         this._lbLife = new cc.LabelTTF("0", "Arial", 20);
         this._lbLife.attr({
-            x : 60,
-            y : 463,
-            color : cc.color(255, 0, 0)
+            x: 60,
+            y: 463,
+            color: cc.color(255, 0, 0)
         });
         this.addChild(this._lbLife, 1000);
     },
-    initShip : function(){
+    initShip: function () {
         this._ship = new ShipSprite("#ship01.png");
         this._ship.attr({
-            x : 160,
-            y : 60
+            x: 160,
+            y: 60
         });
         this.addChild(this._ship, 1);
     },
     //每一帧都会调用update
-    update:function (dt) {
+    update: function (dt) {
         if (this._state == STATE_PLAYING) {
             //UI在这边更新
             this.updateUI();
@@ -115,12 +132,12 @@ var GPTouchLayer = cc.Layer.extend({
         }
     },
     //飞船，子弹等等BatchNode子节点的一个更新
-    moveActiveUnit : function(dt){
+    moveActiveUnit: function (dt) {
         //子弹、爆炸
         var selChild, children = this._texOpaqueBatch.getChildren();
         for (var i in children) {
             selChild = children[i];
-            if (selChild && selChild.active){
+            if (selChild && selChild.active) {
                 selChild.update(dt);
             }
         }
@@ -134,20 +151,20 @@ var GPTouchLayer = cc.Layer.extend({
         //我
         this._ship.update(dt);
     },
-    updateUI:function () {
+    updateUI: function () {
         this._tmpScore += 1;
         this._lbLife.setString(GC.LIFE + '');
         this._lbScore.setString("Score: " + this._tmpScore);
     },
     //添加敌人
-    scoreCounter:function () {
+    scoreCounter: function () {
         if (this._state == STATE_PLAYING) {
             this._time++;
             this._levelManager.loadLevelResource(this._time);
         }
     },
     //检测所有碰撞
-    checkIsCollide:function () {
+    checkIsCollide: function () {
         var selChild, bulletChild;
         var i, locShip = this._ship;
         for (i = 0; i < GC.CONTAINER.ENEMIES.length; i++) {
@@ -183,7 +200,7 @@ var GPTouchLayer = cc.Layer.extend({
         }
     },
     //飞船重生
-    checkIsReborn:function () {
+    checkIsReborn: function () {
         var locShip = this._ship;
         if (GC.LIFE > 0 && !locShip.active) {
             locShip.born();
@@ -200,7 +217,7 @@ var GPTouchLayer = cc.Layer.extend({
         }
     },
     //碰撞检测
-    collide:function (a, b) {
+    collide: function (a, b) {
         var ax = a.x;
         var ay = a.y;
         var bx = b.x;
@@ -214,7 +231,7 @@ var GPTouchLayer = cc.Layer.extend({
         return cc.rectIntersectsRect(aRect, bRect);
     },
     //游戏结束
-    onGameOver : function(){
+    onGameOver: function () {
         cc.audioEngine.stopMusic();
         cc.audioEngine.stopAllEffects();
         cc.director.runScene(new cc.TransitionFade(1.2, new GameOverScene()));
