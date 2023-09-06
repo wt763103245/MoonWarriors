@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-06 18:19:56
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-06 18:36:26
+ * @LastEditTime: 2023-09-06 18:59:41
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\language\en\data.js
  * @Email: 763103245@qq.com
  */
@@ -24,3 +24,5 @@ LanguageEn.Normal = "Normal";
 LanguageEn.Hard = "Hard";
 /**设置返回按钮的文本 */
 LanguageEn.Back = "Go back";
+/**关于文本 */
+LanguageEn.About = LanguageCh.About;

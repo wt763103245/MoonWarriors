@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-06 18:15:26
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-06 18:23:51
+ * @LastEditTime: 2023-09-06 18:59:25
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\language\ch\data.js
  * @Email: 763103245@qq.com
  */
@@ -25,3 +25,6 @@ LanguageCh.Normal = "普通";
 LanguageCh.Hard = "困难";
 /**设置返回按钮的文本 */
 LanguageCh.Back = "返回";
+/**关于文本 */
+LanguageCh.About = "wt763103245\n2023-9-4\n学习使用";
+
