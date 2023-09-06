@@ -24,4 +24,4 @@ LanguageCh.Normal = "普通";
 /**设置困难的文本 */
 LanguageCh.Hard = "困难";
 /**设置返回按钮的文本 */
-LanguageEn.Back = "返回";
+LanguageCh.Back = "返回";
