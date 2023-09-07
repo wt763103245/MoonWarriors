@@ -1,14 +1,23 @@
+/*
+ * @Author: 萌新王
+ * @Date: 2023-09-04 17:18:03
+ * @LastEditors: 萌新王
+ * @LastEditTime: 2023-09-07 17:19:16
+ * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\ExplosionSprite.js
+ * @Email: 763103245@qq.com
+ */
+/**@type {cc.Sprite} 爆炸动画精灵 */
 var ExplosionSprite = cc.Sprite.extend({
-    active:true,
-    animation:null,
-    ctor:function () {
+    active: true,
+    animation: null,
+    ctor: function () {
+        /**@type {cc.SpriteFrame} 得到精灵帧 */
         var pFrame = cc.spriteFrameCache.getSpriteFrame("explosion_01.png");
         this._super(pFrame);
         this.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
-
     },
-    //爆炸动画
-    play:function(){
+    /**爆炸动画 */
+    play: function () {
         var animFrames = [];
         var str = "";
         for (var i = 1; i < 35; i++) {
@@ -23,14 +32,14 @@ var ExplosionSprite = cc.Sprite.extend({
             cc.callFunc(this.destroy, this)
         ));
     },
-    destroy:function () {
+    destroy: function () {
         this.visible = false;
         this.active = false;
     }
 });
 
 ExplosionSprite.getOrCreateExplosion = function () {
-    var selChild =null;
+    var selChild = null;
     for (var j = 0; j < GC.CONTAINER.EXPLOSIONS.length; j++) {
         var selChild = GC.CONTAINER.EXPLOSIONS[j];
         if (selChild.active == false) {

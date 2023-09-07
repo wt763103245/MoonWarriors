@@ -1,32 +1,40 @@
+/*
+ * @Author: 萌新王
+ * @Date: 2023-09-04 17:18:03
+ * @LastEditors: 萌新王
+ * @LastEditTime: 2023-09-07 18:19:18
+ * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\BulletSprite.js
+ * @Email: 763103245@qq.com
+ */
+/**子弹精灵 */
 var BulletSprite = cc.Sprite.extend({
-    active : true,
-    yVelocity : 200,
-    HP : 1,
-    ctor : function(bulletSpeed, weaponType, attackMode){
-        this._super("#"+weaponType);
+    active: true,
+    yVelocity: 200,
+    /**@type {Number} 生命值 */
+    HP: 1,
+    ctor: function (bulletSpeed, weaponType, attackMode) {
+        this._super("#" + weaponType);
         this.yVelocity = -bulletSpeed;
         this.attackMode = attackMode;
         this.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
     },
     //当子弹飞出屏幕，或者触发碰撞时，可以销毁
-    update:function (dt) {
+    update: function (dt) {
         var y = this.y;
         this.y = y - this.yVelocity * dt;
-        if (y < 0 || y > GC.h + 10 || this.HP <= 0) {
-            this.destroy();
-        }
+        (y < 0 || y > GC.h + 10 || this.HP <= 0) && this.destroy();
     },
     //销毁并不是删除子弹对象，只是把部分属性设置为false，循环利用
-    destroy : function(){
+    destroy: function () {
         this.active = false;
         this.visible = false;
     },
     //撞击时HP-1
-    hurt:function () {
+    hurt: function () {
         this.HP--;
     },
     //判断是否碰撞
-    collideRect:function (x, y) {
+    collideRect: function (x, y) {
         return cc.rect(x - 3, y - 3, 6, 6);
     }
 });
@@ -46,9 +54,8 @@ BulletSprite.getOrCreateBullet = function (bulletSpeed, weaponType, attackMode, 
                 return selChild;
             }
         }
-    }
     //或者是敌人的子弹
-    else {
+    }else {
         for (var j = 0; j < GC.CONTAINER.ENEMY_BULLETS.length; j++) {
             selChild = GC.CONTAINER.ENEMY_BULLETS[j];
             if (selChild.active == false) {
@@ -60,8 +67,7 @@ BulletSprite.getOrCreateBullet = function (bulletSpeed, weaponType, attackMode, 
         }
     }
     //如果数组中所有的子弹都在使用中（还在屏幕中 && 没有撞到敌人），那我们只能再创建一颗新的子弹
-    selChild = BulletSprite.create(bulletSpeed, weaponType, attackMode, zOrder, mode);
-    return selChild;
+    return BulletSprite.create(bulletSpeed, weaponType, attackMode, zOrder, mode);
 };
 
 BulletSprite.create = function (bulletSpeed, weaponType, attackMode, zOrder, mode) {
@@ -70,8 +76,7 @@ BulletSprite.create = function (bulletSpeed, weaponType, attackMode, zOrder, mod
     g_GPTouchLayer.addBullet(bullet, zOrder, mode);
     if (mode == GC.UNIT_TAG.PLAYER_BULLET) {
         GC.CONTAINER.PLAYER_BULLETS.push(bullet);
-    }
-    else {
+        GC.CONTAINER.PLAYER_BULLETS.push(bullet);
         GC.CONTAINER.ENEMY_BULLETS.push(bullet);
     }
     return bullet;
@@ -80,7 +85,7 @@ BulletSprite.create = function (bulletSpeed, weaponType, attackMode, zOrder, mod
 BulletSprite.preSet = function () {
     var bullet = null;
     for (var i = 0; i < 10; i++) {
-        var bullet = BulletSprite.create(GC.BULLET_SPEED.SHIP, "W1.png", GC.ENEMY_ATTACK_MODE.NORMAL, 3000, GC.UNIT_TAG.PLAYER_BULLET);
+        bullet = BulletSprite.create(GC.BULLET_SPEED.SHIP, "W1.png", GC.ENEMY_ATTACK_MODE.NORMAL, 3000, GC.UNIT_TAG.PLAYER_BULLET);
         bullet.visible = false;
         bullet.active = false;
     }
