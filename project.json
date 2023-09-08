@@ -46,6 +46,7 @@
         "src/gameOver/layer/GOBackgroundLayer.js",
         "src/gameOver/layer/GOTouchLayer.js",
 
+        "src/util/util_wt.js",
         "src/config/Others.js",
         "src/language/Language.js",
         "src/language/ch/data.js",
