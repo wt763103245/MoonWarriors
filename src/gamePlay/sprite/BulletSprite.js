@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-07 18:19:18
+ * @LastEditTime: 2023-09-08 18:21:47
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\BulletSprite.js
  * @Email: 763103245@qq.com
  */
@@ -29,8 +29,9 @@ var BulletSprite = cc.Sprite.extend({
         this.active = false;
         this.visible = false;
     },
-    //撞击时HP-1
+    /**撞击时HP-1，子弹碰到可以伤害的目标，然后因为子弹只有1点血，所以子弹消失 */
     hurt: function () {
+        //受到1点伤害
         this.HP--;
     },
     //判断是否碰撞
@@ -54,8 +55,8 @@ BulletSprite.getOrCreateBullet = function (bulletSpeed, weaponType, attackMode, 
                 return selChild;
             }
         }
-    //或者是敌人的子弹
-    }else {
+        //或者是敌人的子弹
+    } else {
         for (var j = 0; j < GC.CONTAINER.ENEMY_BULLETS.length; j++) {
             selChild = GC.CONTAINER.ENEMY_BULLETS[j];
             if (selChild.active == false) {
@@ -81,7 +82,7 @@ BulletSprite.create = function (bulletSpeed, weaponType, attackMode, zOrder, mod
     }
     return bullet;
 };
-
+/**创建贴图资源，用来优先加载然后使用 */
 BulletSprite.preSet = function () {
     var bullet = null;
     for (var i = 0; i < 10; i++) {

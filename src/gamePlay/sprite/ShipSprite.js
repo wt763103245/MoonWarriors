@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-07 18:08:37
+ * @LastEditTime: 2023-09-08 16:14:07
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\ShipSprite.js
  * @Email: 763103245@qq.com
  */
@@ -32,6 +32,8 @@ var ShipSprite = cc.Sprite.extend({
             onTouchEnded: this.onTouchEnded,
             onTouchCancelled: this.onTouchCancelled
         }, this);
+        
+        //玩家飞船动画
         //两个帧动画
         var frame0 = cc.spriteFrameCache.getSpriteFrame("ship01.png");
         var frame1 = cc.spriteFrameCache.getSpriteFrame("ship02.png");
@@ -39,9 +41,10 @@ var ShipSprite = cc.Sprite.extend({
         var animFrames = [];
         animFrames.push(frame0);
         animFrames.push(frame1);
-
+        /**@type {cc.Animation} 玩家飞机帧动画 */
         var animation = new cc.Animation(animFrames, 0.1);//0.1应该是采样速度，1秒10次
         var animate = cc.animate(animation);
+        /**永远执行animate.repeatForever */
         var action = animate.repeatForever();
         this.runAction(action);
 
@@ -157,5 +160,4 @@ var ShipSprite = cc.Sprite.extend({
         this._hurtColorLife = 0;
         this.active = true;
     }
-
 });

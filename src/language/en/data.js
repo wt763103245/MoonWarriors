@@ -28,3 +28,5 @@ LanguageEn.Back = "Go back";
 LanguageEn.About = LanguageCh.About;
 /**游戏难度控制器，初始化等级错误 描述文本 */
 LanguageEn.LevelManagerLevelError = "gameLayer must be non-nil";
+/**分数 */
+LanguageCh.Score = "Score"

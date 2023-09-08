@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-06 17:29:52
+ * @LastEditTime: 2023-09-08 16:04:05
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\setting\scene\Setting.js
  * @Email: 763103245@qq.com
  */
@@ -33,11 +33,12 @@ var SettingLayer = cc.Layer.extend({
 var SettingScene = cc.Scene.extend({
     onEnter: function () {
         this._super();
-
+        /**@type {cc.Layer} 设置界面层 */
         var layer = new SettingLayer();
         this.addChild(layer);
-
+        /**@type {cc.Layer} 设置界面菜单层 */
         var menu = new MMMainMenuLayer();
+        //添加到当前设置成中，优先度为1
         this.addChild(menu, 1);
     }
 });

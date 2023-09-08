@@ -1,32 +1,42 @@
-/**
- * Created by lingjianfeng on 14-8-31.
+/*
+ * @Author: 萌新王
+ * @Date: 2023-09-04 17:18:03
+ * @LastEditors: 萌新王
+ * @LastEditTime: 2023-09-08 19:43:28
+ * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\SparkEffectSprite.js
+ * @Email: 763103245@qq.com
  */
-
 var SparkEffectSprite = cc.Class.extend({
-    active:true,
-    spark1:null,
-    spark2:null,
-    scale:1.2,
-    duration:0.7,
-    ctor:function () {
+    /**@type {Boolean} 启用状态，默认为启用 */
+    active: true,
+    /**@type {cc.Sprite} 爆炸特效1 */
+    spark1: null,
+    /**@type {cc.Sprite} 爆炸特效2 */
+    spark2: null,
+    /**@type {Number} 缩放大小 */
+    scale: 1.2,
+    duration: 0.7,
+    ctor: function () {
+        //创建爆炸特效，以缓存中的图标
         this.spark1 = new cc.Sprite("#explode2.png");
+        //以透明度和原本颜色融合
         this.spark1.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
         this.spark2 = new cc.Sprite("#explode3.png");
         this.spark2.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
     },
-    reset:function (x, y) {
+    reset: function (x, y) {
         this.spark1.attr({
-	        x: x,
-	        y: y,
-	        scale: this.scale,
-	        opacity: 255
+            x: x,
+            y: y,
+            scale: this.scale,
+            opacity: 255
         });
         this.spark2.attr({
-	        x: x,
-	        y: y,
-	        scale: this.scale,
-	        rotation: Math.random() * 360,
-	        opacity: 255
+            x: x,
+            y: y,
+            scale: this.scale,
+            rotation: Math.random() * 360,
+            opacity: 255
         });
 
         var right = cc.rotateBy(this.duration, 45);
@@ -40,8 +50,10 @@ var SparkEffectSprite = cc.Class.extend({
         this.spark2.runAction(scaleBy.clone());
         this.spark2.runAction(seq.clone());
     },
-    destroy:function () {
+    destroy: function () {
+        /**@type {Boolean} 不启用 */
         this.active = false;
+        //隐藏两个爆炸效果示例
         this.spark1.visible = false;
         this.spark2.visible = false;
     }
@@ -66,6 +78,7 @@ SparkEffectSprite.getOrCreateSparkEffect = function (x, y) {
 
 SparkEffectSprite.create = function () {
     var sparkEffect = new SparkEffectSprite();
+    //将2个爆炸效果添加到游戏触摸层
     g_GPTouchLayer.addSpark(sparkEffect.spark1);
     g_GPTouchLayer.addSpark(sparkEffect.spark2);
     GC.CONTAINER.SPARKS.push(sparkEffect);

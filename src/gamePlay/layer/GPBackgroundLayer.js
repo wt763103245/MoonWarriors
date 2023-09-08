@@ -10,9 +10,12 @@
 var GPBackgroundLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
+        //初始化背景
         this.initBackground();
     },
+    /**初始化背景 */
     initBackground: function () {
+        /**@type {cc.Sprite} 游戏界面背景图片精灵 */
         this._sptBg = new cc.Sprite("#bg01.png");
         //居中
         this._sptBg.attr({

@@ -13,6 +13,7 @@ var STTouchLayer = cc.Layer.extend({
         //初始化触摸层ui相关
         this.initTouchAbout();
     },
+    /**初始化触摸层 */
     initTouchAbout: function () {
         /**@type {String} 添加图片缓存 */
         var cacheImage = cc.textureCache.addImage(res.st_st_menuTitle_png);
