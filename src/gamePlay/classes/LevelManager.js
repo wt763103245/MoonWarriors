@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-08 18:47:19
+ * @LastEditTime: 2023-09-11 20:12:41
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\classes\LevelManager.js
  * @Email: 763103245@qq.com
  */
@@ -10,6 +10,7 @@
 var LevelManager = cc.Class.extend({
     /**@type {Level1} 游戏难度相关参数 */
     _currentLevel: null,
+    /**@type {g_GPTouchLayer|GPTouchLayer|cc.Layer} 游戏层 */
     _gamePlayLayer: null,
     /**创建游戏等级控制器类
      * @param {Number} gamePlayLayer 游戏等级\难度
@@ -65,20 +66,30 @@ var LevelManager = cc.Class.extend({
      * @param {Number} deltaTime 当前游戏时间
      */
     loadLevelResource: function (deltaTime) {
+        /**@type {Level1} 当前游戏规则 */
         var locCurrentLevel = this._currentLevel;
         //如果当前场景存在的敌人数量超过限制，那就不继续生成
         if (GC.ACTIVE_ENEMIES >= locCurrentLevel.enemyMax) return;
-
-        for (var i = 0; i < locCurrentLevel.enemies.length; i++) {
-            var selEnemy = locCurrentLevel.enemies[i];
+        //生成敌机
+        /**敌机类型列表 */
+        let enemies = locCurrentLevel.enemies
+        for (var i = 0; i < enemies.length; i++) {
+            /**随机生成的敌机数据 */
+            var selEnemy = enemies[i];
             if (selEnemy) {
+                //显示类型为Once，指只显示一次
                 if (selEnemy.ShowType === "Once") {
+                    //判断当前时间是否可以显示
+                    //显示类型为Once，指只显示一次
                     if (selEnemy.ShowTime == deltaTime) {
+                        // -! tag @wt763103245
                         for (var tIndex = 0; tIndex < selEnemy.Types.length; tIndex++) {
                             this.addEnemyToGameLayer(selEnemy.Types[tIndex]);
                         }
                     }
+                //重复显示
                 } else if (selEnemy.ShowType === "Repeate") {
+                    //判断当前时间是否可以显示
                     if (deltaTime % selEnemy.ShowTime === 0) {
                         for (var rIndex = 0; rIndex < selEnemy.Types.length; rIndex++) {
                             this.addEnemyToGameLayer(selEnemy.Types[rIndex]);

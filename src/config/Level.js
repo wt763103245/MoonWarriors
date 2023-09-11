@@ -13,7 +13,7 @@ var Level1 = {
     /**敌机类型list */
     enemies: [
         {
-            /**@type {"Repeate"|"Once"} 显示类型 */
+            /**@type {"Repeate"|"Once"} 显示类型，Repeate表示重复显示，这是每隔2秒出一次这个飞机 */
             ShowType: "Repeate",
             /**@type {String} 显示时间 */
             ShowTime: "00:02",

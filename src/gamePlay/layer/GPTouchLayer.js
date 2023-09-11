@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-08 19:55:29
+ * @LastEditTime: 2023-09-11 19:55:19
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\layer\GPTouchLayer.js
  * @Email: 763103245@qq.com
  */
@@ -26,7 +26,7 @@ var GPTouchLayer = cc.Layer.extend({
     _texTransparentBatch: null,
     /**@type {cc.LabelBMFont|cc.SpriteBatchNode} 分数，设置分数文本控件参数 */
     _lbScore: null,
-    /**@type {cc.Sprite} 玩家飞船 */
+    /**@type {cc.Sprite|ShipSprite} 玩家飞船 */
     _ship: null,
     /**@type {Number} 当前游戏状态 */
     _state: STATE_PLAYING,
@@ -79,6 +79,7 @@ var GPTouchLayer = cc.Layer.extend({
         //定时器每1秒执行this.scoreCounter，用来创建敌人
         this.schedule(this.scoreCounter, 1);//每秒尝试添加一个敌人
         //子弹、敌人等预备
+        //添加到缓存中，方便快速调用
         BulletSprite.preSet();
         EnemySprite.preSet();
         SparkEffectSprite.preSet();
@@ -249,41 +250,58 @@ var GPTouchLayer = cc.Layer.extend({
                     selChild.hurt();
                 }
             }
-            // -tag 2023年9月8日20:02:36 @wt763103245
             //敌机与玩家是否碰撞
-            if (this.collide(selChild, locShip)) {
-                if (locShip.active) {
-                    selChild.hurt();
-                    locShip.hurt();
-                }
+            //玩家是否启用，没有启用的情况应该是刚复活的无敌时间
+            if (locShip.active && this.collide(selChild, locShip)) {
+                //敌机受到伤害
+                selChild.hurt();
+                //玩家受到伤害
+                locShip.hurt();
             }
         }
         //检测玩家与敌机的子弹是否碰撞
-        for (i = 0; i < GC.CONTAINER.ENEMY_BULLETS.length; i++) {
-            selChild = GC.CONTAINER.ENEMY_BULLETS[i];
-            if (selChild.active && this.collide(selChild, locShip)) {
-                if (locShip.active) {
+        //玩家是否启用
+        if (locShip.active) {
+            //循环所有敌人子弹
+            for (i = 0; i < GC.CONTAINER.ENEMY_BULLETS.length; i++) {
+                /**敌人子弹 */
+                selChild = GC.CONTAINER.ENEMY_BULLETS[i];
+                //敌人子弹是否启用，玩家碰撞盒是否和子弹重叠
+                if (selChild.active && this.collide(selChild, locShip)) {
+                    //敌人子弹受到伤害
                     selChild.hurt();
+                    //玩家受到伤害
                     locShip.hurt();
                 }
             }
         }
     },
-    //飞船重生
+    /**飞船重生 */
     checkIsReborn: function () {
+        /**@type {ShipSprite|cc.Sprite} 玩家飞船 */
         var locShip = this._ship;
-        if (GC.LIFE > 0 && !locShip.active) {
-            locShip.born();
-        }
-        else if (GC.LIFE <= 0 && !locShip.active) {
-            this._ship = null;
-            this._state = STATE_GAMEOVER;
-            GC.GAME_STATE = GC.GAME_STATE_ENUM.OVER;
-            var action = cc.sequence(
-                cc.delayTime(0.2),
-                cc.callFunc(this.onGameOver, this)
-            );
-            this.runAction(action);
+        //玩家是否不存在
+        if (!locShip.active) {
+            //判断玩家是否还有生命
+            if (GC.LIFE > 0) {
+                //玩家重生
+                locShip.born();
+            } else {
+                //清除玩家
+                this._ship = null;
+                //游戏状态变为 游戏结束
+                this._state = STATE_GAMEOVER;
+                GC.GAME_STATE = GC.GAME_STATE_ENUM.OVER;
+                /**@type {cc.Sequence} 游戏结束动画 */
+                var action = cc.sequence(
+                    //延迟0.2秒
+                    cc.delayTime(0.2),
+                    //回调结束方法，并传入this
+                    cc.callFunc(this.onGameOver, this)
+                );
+                //播放动画
+                this.runAction(action);
+            }
         }
     },
     /**碰撞检测 
@@ -306,23 +324,41 @@ var GPTouchLayer = cc.Layer.extend({
         //判断两个矩形是否相交
         return cc.rectIntersectsRect(aRect, bRect);
     },
-    //游戏结束
+    /**游戏结束 */
     onGameOver: function () {
+        //停止音乐
         cc.audioEngine.stopMusic();
+        //停止所有效果音效
         cc.audioEngine.stopAllEffects();
+        //创建游戏结束界面，淡出淡入1.2后显示游戏结束界面面
         cc.director.runScene(new cc.TransitionFade(1.2, new GameOverScene()));
     }
 });
-
+/**添加子弹精灵到游戏特效批量节点上
+ * @param {BulletSprite|cc.Sprite} bullet 子弹精灵
+ * @param {Number} zOrder 子节点层级
+ * @param {*} mode 子节点标签
+ */
 GPTouchLayer.prototype.addBullet = function (bullet, zOrder, mode) {
     this._texOpaqueBatch.addChild(bullet, zOrder, mode);
 };
+/**添加敌机精灵到游戏内容精灵批量节点上
+ * @param {EnemySprite|cc.Sprite} enemy 敌机精灵
+ * @param {Number} z 子节点层级
+ * @param {*} tag 子节点标签
+ */
 GPTouchLayer.prototype.addEnemy = function (enemy, z, tag) {
     this._texTransparentBatch.addChild(enemy, z, tag);
 };
+/**添加爆炸效果精灵到爆炸效果精灵批量节点上
+ * @param {ExplosionSprite|cc.Sprite} explosion 爆炸效果精灵
+ */
 GPTouchLayer.prototype.addExplosions = function (explosion) {
     this._explosions.addChild(explosion);
 };
+/**添加另两种爆炸效果精灵到游戏特效精灵批量节点上
+ * @param {SparkEffectSprite|cc.Sprite} spark 游戏特效精灵
+ */
 GPTouchLayer.prototype.addSpark = function (spark) {
     this._texOpaqueBatch.addChild(spark);
 };

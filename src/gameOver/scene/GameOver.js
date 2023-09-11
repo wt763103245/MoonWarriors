@@ -8,7 +8,9 @@
  */
 /**游戏结束层 */
 var GameOverLayer = cc.Layer.extend({
+    /**@type {cc.Layer} 游戏结束界面背景层 */
     _backgroundLayer: null,
+    /**@type {cc.Layer} 游戏结束界面触摸层 */
     _touchLayer: null,
     ctor: function () {
         this._super();
@@ -28,6 +30,7 @@ var GameOverLayer = cc.Layer.extend({
         this.addChild(this._touchLayer, 1);
     }
 });
+/**游戏结束界面 */
 var GameOverScene = cc.Scene.extend({
     onEnter: function () {
         this._super();
