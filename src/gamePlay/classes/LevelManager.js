@@ -72,7 +72,7 @@ var LevelManager = cc.Class.extend({
         if (GC.ACTIVE_ENEMIES >= locCurrentLevel.enemyMax) return;
         //生成敌机
         /**敌机类型列表 */
-        let enemies = locCurrentLevel.enemies
+        let enemies = locCurrentLevel.enemies;
         for (var i = 0; i < enemies.length; i++) {
             /**随机生成的敌机数据 */
             var selEnemy = enemies[i];

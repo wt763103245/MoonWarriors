@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-13 17:34:03
+ * @LastEditTime: 2023-09-13 18:00:28
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\ShipSprite.js
  * @Email: 763103245@qq.com
  */
@@ -24,7 +24,7 @@ var ShipSprite = cc.Sprite.extend({
     ctor: function (aTexture) {
         this._super(aTexture);
         /**@type {cc.Size} 飞机精灵宽高 */
-        let size = this.getContentSize()
+        let size = this.getContentSize();
         /**@type {cc.Rect} 触摸范围 */
         this._rect = cc.rect(0, 0, size.width, size.height);
         //事件穿透
@@ -46,7 +46,7 @@ var ShipSprite = cc.Sprite.extend({
 
         //玩家飞船动画
         //两个帧动画
-        let _getFrame = cc.spriteFrameCache.getSpriteFrame
+        let _getFrame = cc.spriteFrameCache.getSpriteFrame;
         //放到一个统一的数组里
         var animFrames = [];
         //飞机序列帧添加到列表中

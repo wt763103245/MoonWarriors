@@ -2,10 +2,7 @@
   <PropertyGroup Name="MoonWarriors" Version="3.10.0.0" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
-      <RootFolder Name=".">
-        <Image Name="HelloWorld.png" />
-        <Project Name="MainScene.csd" Type="Scene" />
-      </RootFolder>
+      <RootFolder Name="." />
     </Group>
   </SolutionFolder>
 </Solution>

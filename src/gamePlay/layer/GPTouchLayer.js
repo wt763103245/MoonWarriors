@@ -224,7 +224,8 @@ var GPTouchLayer = cc.Layer.extend({
     /**更新ui */
     updateUI: function () {
         //刷新玩家生命值显示
-        let oldLife = this._lbLife.getString(), newLife = GC.LIFE + '';
+        let oldLife = this._lbLife.getString();
+        let newLife = GC.LIFE + '';
         if (oldLife != newLife) this._lbLife.setString(newLife);
         //临时分数增加
         //刷新玩家当前分数
