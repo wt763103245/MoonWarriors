@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-11 19:55:19
+ * @LastEditTime: 2023-09-13 16:43:52
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\layer\GPTouchLayer.js
  * @Email: 763103245@qq.com
  */
@@ -45,6 +45,8 @@ var GPTouchLayer = cc.Layer.extend({
         //重置相关信息
         /**@type {Number} 玩家分数，重置 */
         GC.SCORE = 0;
+        //初始化玩家血量
+        this.initPlayerHp();
 
         //重置游戏场景中的物体
         /**光效 */
@@ -89,6 +91,11 @@ var GPTouchLayer = cc.Layer.extend({
     playMusic: function () {
         /**判断游戏是否启用音效 */
         GC.SOUND_ON && cc.audioEngine.playMusic(res.gp_bgMusic_mp3, true);
+    },
+    /**初始化玩家血量 */
+    initPlayerHp: function () {
+        /**玩家当前血量等于默认血量 */
+        GC.LIFE = GC._LIFE;
     },
     /**初始化批量处理节点，用来高效加载同纹理精灵 */
     initBatchNode: function () {
