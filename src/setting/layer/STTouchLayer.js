@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-06 18:37:55
+ * @LastEditTime: 2023-09-13 16:24:12
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\setting\layer\STTouchLayer.js
  * @Email: 763103245@qq.com
  */
@@ -16,7 +16,7 @@ var STTouchLayer = cc.Layer.extend({
     /**初始化触摸层 */
     initTouchAbout: function () {
         /**@type {String} 添加图片缓存 */
-        var cacheImage = cc.textureCache.addImage(res.st_st_menuTitle_png);
+        var cacheImage = cc.textureCache.addImage(res.st_menuTitle_png);
         /**@type {cc.Sprite} option图片 */
         var title = new cc.Sprite(cacheImage, cc.rect(0, 0, 134, 34));
         title.x = GC.w_2;
