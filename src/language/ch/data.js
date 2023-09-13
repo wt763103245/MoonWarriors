@@ -32,3 +32,5 @@ LanguageCh.About = `${Others.Data.Name}\n${Others.InitDate}\n学习使用`;
 LanguageCh.LevelManagerLevelError = "游戏难度控制器，初始化等级错误。难度等级不能为0"
 /**分数 */
 LanguageCh.Score = "分数"
+/**结算分数文本 */
+LanguageCh.YourScore = `你的${LanguageCh.Score}`

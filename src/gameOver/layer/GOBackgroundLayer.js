@@ -1,8 +1,13 @@
-
+/*
+ * @Author: 萌新王
+ * @Date: 2023-09-04 17:18:03
+ * @LastEditors: 萌新王
+ * @LastEditTime: 2023-09-13 17:16:18
+ * @FilePath: \OneDrive\program\js\MoonWarriors\src\gameOver\layer\GOBackgroundLayer.js
+ * @Email: 763103245@qq.com
+ */
 var GOBackgroundLayer = cc.Layer.extend({
-
     ctor : function(){
-
         this._super();
 
         this.initBackground();
@@ -10,7 +15,6 @@ var GOBackgroundLayer = cc.Layer.extend({
         this.initLogo();
 
         this.initScore();
-
     },
 
     initBackground : function(){
@@ -38,7 +42,7 @@ var GOBackgroundLayer = cc.Layer.extend({
         this.addChild(cocos2dhtml5);
     },
     initScore : function(){
-        var lbScore = new cc.LabelTTF("Your Score:" + GC.SCORE, "Arial Bold", 16);
+        var lbScore = new cc.LabelTTF(Language.YourScore + ":" + GC.SCORE, "Arial Bold", 16);
         lbScore.x = 160;
         lbScore.y = 280;
         lbScore.color = cc.color(250, 179, 0);

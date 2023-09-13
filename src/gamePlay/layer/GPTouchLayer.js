@@ -132,7 +132,7 @@ var GPTouchLayer = cc.Layer.extend({
     /**添加游戏相关信息，比如玩家图标，分数等 */
     initAboutInfo: function () {
         /**@type {cc.LabelBMFont|cc.SpriteBatchNode} 分数，设置分数文本控件参数 */
-        this._lbScore = new cc.LabelBMFont(Language.Score + ": 0", res.sh_arial_14_fnt);
+        this._lbScore = new cc.LabelBMFont(LanguageEn.Score + ": 0", res.sh_arial_14_fnt);
         //设置锚点1,0，设置位置居中-5,-30
         this._lbScore.attr({
             anchorX: 1,
@@ -228,7 +228,7 @@ var GPTouchLayer = cc.Layer.extend({
         if (oldLife != newLife) this._lbLife.setString(newLife);
         //临时分数增加
         //刷新玩家当前分数
-        this._lbScore.setString(Language.Score + ": " + ++this._tmpScore);
+        this._lbScore.setString(LanguageEn.Score + ": " + ++this._tmpScore);
     },
     /**添加敌人 */
     scoreCounter: function () {

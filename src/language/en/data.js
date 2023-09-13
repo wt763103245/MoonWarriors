@@ -2,11 +2,11 @@
  * @Author: 萌新王
  * @Date: 2023-09-06 18:19:56
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-06 18:59:41
+ * @LastEditTime: 2023-09-13 17:11:02
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\language\en\data.js
  * @Email: 763103245@qq.com
  */
-var LanguageEn = LanguageCh || {};
+var LanguageEn = Object.assign({}, LanguageCh) || {};
 LanguageEn.MainMenu = "Main Menu";
 /**设置音乐的文本 */
 LanguageEn.Sound = "Sound";
@@ -29,4 +29,6 @@ LanguageEn.About = LanguageCh.About;
 /**游戏难度控制器，初始化等级错误 描述文本 */
 LanguageEn.LevelManagerLevelError = "gameLayer must be non-nil";
 /**分数 */
-LanguageCh.Score = "Score"
+LanguageEn.Score = "Score"
+/**结算分数文本 */
+LanguageEn.YourScore = `Your ${LanguageEn.Score}`
