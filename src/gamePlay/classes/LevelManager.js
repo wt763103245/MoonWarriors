@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-13 16:59:56
+ * @LastEditTime: 2023-09-13 18:18:16
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\classes\LevelManager.js
  * @Email: 763103245@qq.com
  */
@@ -72,7 +72,7 @@ var LevelManager = cc.Class.extend({
         if (GC.ACTIVE_ENEMIES >= locCurrentLevel.enemyMax) return;
         //生成敌机
         /**敌机类型列表 */
-        let enemies = locCurrentLevel.enemies;
+        var enemies = locCurrentLevel.enemies;
         for (var i = 0; i < enemies.length; i++) {
             /**随机生成的敌机数据 */
             var selEnemy = enemies[i];
@@ -87,7 +87,7 @@ var LevelManager = cc.Class.extend({
                             this.addEnemyToGameLayer(selEnemy.Types[tIndex]);
                         }
                     }
-                //重复显示
+                    //重复显示
                 } else if (selEnemy.ShowType === "Repeate") {
                     //判断当前时间是否可以显示
                     if (deltaTime % selEnemy.ShowTime === 0) {

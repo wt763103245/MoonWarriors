@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-13 17:12:37
+ * @LastEditTime: 2023-09-13 20:34:55
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\layer\GPTouchLayer.js
  * @Email: 763103245@qq.com
  */
@@ -224,8 +224,8 @@ var GPTouchLayer = cc.Layer.extend({
     /**更新ui */
     updateUI: function () {
         //刷新玩家生命值显示
-        let oldLife = this._lbLife.getString();
-        let newLife = GC.LIFE + '';
+        var oldLife = this._lbLife.getString();
+        var newLife = GC.LIFE + '';
         if (oldLife != newLife) this._lbLife.setString(newLife);
         //临时分数增加
         //刷新玩家当前分数

@@ -26,11 +26,11 @@ LanguageCh.Hard = "困难";
 /**设置返回按钮的文本 */
 LanguageCh.Back = "返回";
 /**关于文本 */
-LanguageCh.About = `${Others.Data.Name}\n${Others.InitDate}\n学习使用`;
+LanguageCh.About = "Others.Data.Name" + "\n" + "Others.InitDate" + "\n学习使用";
 // LanguageCh.About = Other.Data.Name + '\n' + Other.InitDate + '\n学习使用';
 /**游戏难度控制器，初始化等级错误 描述文本 */
-LanguageCh.LevelManagerLevelError = "游戏难度控制器，初始化等级错误。难度等级不能为0"
+LanguageCh.LevelManagerLevelError = "游戏难度控制器，初始化等级错误。难度等级不能为0";
 /**分数 */
-LanguageCh.Score = "分数"
+LanguageCh.Score = "分数";
 /**结算分数文本 */
-LanguageCh.YourScore = `你的${LanguageCh.Score}`
+LanguageCh.YourScore = "你的" + LanguageCh.Score;

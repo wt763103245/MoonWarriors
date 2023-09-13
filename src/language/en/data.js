@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-06 18:19:56
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-13 17:11:02
+ * @LastEditTime: 2023-09-13 18:10:32
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\language\en\data.js
  * @Email: 763103245@qq.com
  */
@@ -29,6 +29,6 @@ LanguageEn.About = LanguageCh.About;
 /**游戏难度控制器，初始化等级错误 描述文本 */
 LanguageEn.LevelManagerLevelError = "gameLayer must be non-nil";
 /**分数 */
-LanguageEn.Score = "Score"
+LanguageEn.Score = "Score";
 /**结算分数文本 */
-LanguageEn.YourScore = `Your ${LanguageEn.Score}`
+LanguageEn.YourScore = "Your" + LanguageEn.Score;
