@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-11 19:15:06
+ * @LastEditTime: 2023-09-13 17:34:03
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\ShipSprite.js
  * @Email: 763103245@qq.com
  */
@@ -15,7 +15,7 @@ var ShipSprite = cc.Sprite.extend({
     /**@type {Number} ？玩家被攻击是生命颜色 */
     _hurtColorLife: 0,
     /**@type {Number} 玩家生命值 */
-    HP: 5,
+    HP: GC.HP,
     /**@type {Boolean} 玩家是否启用 */
     active: true,
     /**初始化
@@ -205,7 +205,7 @@ var ShipSprite = cc.Sprite.extend({
         //执行动画，按顺序执行，先延迟0.5秒，在闪烁3秒9次，最后执行回调
         this.runAction(cc.sequence(cc.delayTime(0.5), blinks, makeBeAttack));
         /**@type {Number} 恢复玩家生命为5 */
-        this.HP = 5;
+        this.HP = GC.HP;
 
         this._hurtColorLife = 0;
         /**@type {Boolean} 玩家启用 */

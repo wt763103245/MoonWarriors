@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-13 16:41:04
+ * @LastEditTime: 2023-09-13 17:31:25
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\config\GameConfig.js
  * @Email: 763103245@qq.com
  */
@@ -34,10 +34,12 @@ GC.GAME_STATE_ENUM = {
 /**@type {GC.GAME_STATE_ENUM|Number} 当前游戏状态 */
 GC.GAME_STATE = GC.GAME_STATE_ENUM.HOME;
 
-/**默认血量 */
-GC._LIFE = 1;
+/**默认生命值 */
+GC._LIFE = 3;
 /**生命值 */
 GC.LIFE = GC._LIFE;
+/**默认血量 */
+GC.HP = 5
 /**当前场景存在敌人数量 */
 GC.ACTIVE_ENEMIES = 0;
 
