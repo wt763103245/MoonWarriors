@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-13 16:43:52
+ * @LastEditTime: 2023-09-13 17:04:45
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\layer\GPTouchLayer.js
  * @Email: 763103245@qq.com
  */
@@ -30,7 +30,7 @@ var GPTouchLayer = cc.Layer.extend({
     _ship: null,
     /**@type {Number} 当前游戏状态 */
     _state: STATE_PLAYING,
-
+    /**@type {Number} 当前游戏时长s */
     _time: null,
     /**@type {Number} 临时分数 */
     _tmpScore: 0,
@@ -49,16 +49,7 @@ var GPTouchLayer = cc.Layer.extend({
         this.initPlayerHp();
 
         //重置游戏场景中的物体
-        /**光效 */
-        GC.CONTAINER.SPARKS = [];
-        /**敌人 */
-        GC.CONTAINER.ENEMIES = [];
-        /**敌人子弹 */
-        GC.CONTAINER.ENEMY_BULLETS = [];
-        /**玩家子弹 */
-        GC.CONTAINER.PLAYER_BULLETS = [];
-        /**爆炸效果 */
-        GC.CONTAINER.EXPLOSIONS = [];
+        this.initContainers();
 
         //重置游戏状态，游戏状态改为游戏中
         GC.GAME_STATE = GC.GAME_STATE_ENUM.PLAY;
@@ -96,6 +87,21 @@ var GPTouchLayer = cc.Layer.extend({
     initPlayerHp: function () {
         /**玩家当前血量等于默认血量 */
         GC.LIFE = GC._LIFE;
+    },
+    /**初始化场景相关 */
+    initContainers: function () {
+        /**场景中的敌人数量归零 */
+        GC.ACTIVE_ENEMIES = 0;
+        /**敌人 */
+        GC.CONTAINER.ENEMIES = [];
+        /**敌人子弹 */
+        GC.CONTAINER.ENEMY_BULLETS = [];
+        /**玩家子弹 */
+        GC.CONTAINER.PLAYER_BULLETS = [];
+        /**光效 */
+        GC.CONTAINER.SPARKS = [];
+        /**爆炸效果 */
+        GC.CONTAINER.EXPLOSIONS = [];
     },
     /**初始化批量处理节点，用来高效加载同纹理精灵 */
     initBatchNode: function () {
