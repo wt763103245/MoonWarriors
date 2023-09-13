@@ -12,6 +12,7 @@ var AboutLayer = cc.Layer.extend({
     _touchLayer: null,
     ctor: function () {
         this._super()
+        //初始化背景层
         this.addBackgroundLayer();
         this.addTouchLayer();
     },
