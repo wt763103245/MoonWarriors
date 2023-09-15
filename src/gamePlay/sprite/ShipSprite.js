@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-13 20:35:19
- * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\ShipSprite.js
+ * @LastEditTime: 2023-09-15 14:27:54
+ * @FilePath: \MoonWarriors\src\gamePlay\sprite\ShipSprite.js
  * @Email: 763103245@qq.com
  */
 /**飞机精灵 */
@@ -63,7 +63,7 @@ var ShipSprite = cc.Sprite.extend({
         this.runAction(animate);
 
         //开火，每秒6次
-        this.schedule(this.shoot, 1 / 6);
+        this.schedule(this.shoot, GC.PlayerShootingSpeed);
         //初始化重生特效
         this.initBornSprite();
         //开始重生

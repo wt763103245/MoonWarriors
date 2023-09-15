@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-13 18:18:16
- * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\classes\LevelManager.js
+ * @LastEditTime: 2023-09-15 14:16:38
+ * @FilePath: \MoonWarriors\src\gamePlay\classes\LevelManager.js
  * @Email: 763103245@qq.com
  */
 /**等级控制器 */
@@ -18,9 +18,8 @@ var LevelManager = cc.Class.extend({
     ctor: function (gamePlayLayer) {
         //难度不能为0
         if (!gamePlayLayer) throw Language.LevelManagerLevelError;
-        //-！难度需要可以调整   @wt763103245
         /**@type {Level1} 游戏难度相关参数 */
-        this._currentLevel = Level1;
+        this._currentLevel = GameLevel[GC.GAMESETTINGS.CURRENTLEVEL];
         /**@type {g_GPTouchLayer} 当前游戏层 */
         this._gamePlayLayer = gamePlayLayer;
         //设置难度
@@ -38,6 +37,7 @@ var LevelManager = cc.Class.extend({
             //重新设定敌机显示时间，转化成数字类型(时间)
             locCurrentLevelEnemies[i].ShowTime = this._minuteToSecond(locCurrentLevelEnemies[i].ShowTime);
         }
+        this._currentLevel.enemies = locCurrentLevelEnemies.slice();
     },
     /**获取敌机显示时间，转化成数字（时间）
      * @param {String|Number} minuteStr 加载的显示时间数据

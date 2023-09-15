@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-13 20:34:55
- * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\layer\GPTouchLayer.js
+ * @LastEditTime: 2023-09-15 12:46:27
+ * @FilePath: \MoonWarriors\src\gamePlay\layer\GPTouchLayer.js
  * @Email: 763103245@qq.com
  */
 //游戏状态
@@ -24,8 +24,8 @@ var GPTouchLayer = cc.Layer.extend({
     _texOpaqueBatch: null,
     /**@type {cc.SpriteBatchNode} 飞船贴图和游戏背景 的精灵表 生成的批量节点 */
     _texTransparentBatch: null,
-    _lbScore: null,
     /**@type {cc.LabelBMFont|cc.SpriteBatchNode} 分数，设置分数文本控件参数 */
+    _lbScore: null,
     /**@type {cc.Sprite|ShipSprite} 玩家飞船 */
     _ship: null,
     /**@type {Number} 当前游戏状态 */

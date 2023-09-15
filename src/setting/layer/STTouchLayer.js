@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-13 16:24:12
- * @FilePath: \OneDrive\program\js\MoonWarriors\src\setting\layer\STTouchLayer.js
+ * @LastEditTime: 2023-09-15 14:27:07
+ * @FilePath: \MoonWarriors\src\setting\layer\STTouchLayer.js
  * @Email: 763103245@qq.com
  */
 /**设置界面触摸层 */
@@ -45,12 +45,17 @@ var STTouchLayer = cc.Layer.extend({
         title2.setEnabled(false);
         cc.MenuItemFont.setFontName("Arial");
         cc.MenuItemFont.setFontSize(26);
+        //难度菜单按钮
         var item2 = new cc.MenuItemToggle(
             new cc.MenuItemFont(Language.Easy),
             new cc.MenuItemFont(Language.Normal),
             new cc.MenuItemFont(Language.Hard)
         );
-        item2.setCallback(this.onModeControl);
+        cc.log(GC.GAMESETTINGS.CURRENTLEVEL)
+        //初始化时，获取当前游戏难度
+        item2.setSelectedIndex(GC.GAMESETTINGS.CURRENTLEVEL);
+        //设置菜单按钮回调
+        item2.setCallback(this.onModeControl, item2);
         //返回
         cc.MenuItemFont.setFontName("Arial");
         cc.MenuItemFont.setFontSize(26);
@@ -64,6 +69,7 @@ var STTouchLayer = cc.Layer.extend({
         back.y -= 50;//必须在menu之后设置位置
         this.addChild(menu);
     },
+    /**音效开关菜单按钮回调 */
     onSoundControl: function () {
         GC.SOUND_ON = !GC.SOUND_ON;
         var audioEngine = cc.audioEngine;
@@ -74,10 +80,19 @@ var STTouchLayer = cc.Layer.extend({
             audioEngine.stopAllEffects();
         }
     },
-    //难度设置按钮
-    onModeControl: function () {
-        //难度功能没有实现
+    /**难度菜单按钮回调
+     * @param {*} sender 难度设置按钮
+     */
+    onModeControl: function (sender) {
+        /**@type {Number} 获取当前选中的选项的索引 */
+        var selectedIndex = sender.getSelectedIndex();
+        // cc.log("当前难度选项索引" + selectedIndex);
+        // var selectedItem = sender.getSelectedItem(); // 获取当前选中的选项  
+        // cc.log("当前难度选项文本");
+        // cc.log(selectedItem);
+        GC.GAMESETTINGS.CURRENTLEVEL = selectedIndex;
     },
+    /**返回菜单按钮回调 */
     onBackCallback: function () {
         cc.director.runScene(new cc.TransitionFade(1.2, new MainMenuScene()));
     }

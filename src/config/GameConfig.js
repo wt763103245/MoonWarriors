@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-13 17:31:25
- * @FilePath: \OneDrive\program\js\MoonWarriors\src\config\GameConfig.js
+ * @LastEditTime: 2023-09-15 14:39:37
+ * @FilePath: \MoonWarriors\src\config\GameConfig.js
  * @Email: 763103245@qq.com
  */
 /**视窗相关参数，如果在网页就是网页宽高，如果在pc就是窗口大小，如果在手机就是手机分辨率大小 */
@@ -40,6 +40,8 @@ GC._LIFE = 3;
 GC.LIFE = GC._LIFE;
 /**默认血量 */
 GC.HP = 5
+/**@type {Number} 玩家射速 */
+GC.PlayerShootingSpeed = 1 / 60;
 /**当前场景存在敌人数量 */
 GC.ACTIVE_ENEMIES = 0;
 
@@ -85,4 +87,10 @@ GC.ENEMY_MOVE_TYPE = {
     VERTICAL: 1,
     HORIZONTAL: 2,
     OVERLAP: 3
+};
+
+/**游戏设置相关 */
+GC.GAMESETTINGS = {
+    /**游戏难度 */
+    CURRENTLEVEL: 0,
 };
