@@ -7,7 +7,7 @@
  * @Email: 763103245@qq.com
  */
 var LanguageCh = {};
-
+/**主菜单文本 */
 LanguageCh.MainMenu = "主菜单";
 /**设置音乐的文本 */
 LanguageCh.Sound = "音乐";
@@ -26,7 +26,7 @@ LanguageCh.Hard = "困难";
 /**设置返回按钮的文本 */
 LanguageCh.Back = "返回";
 /**关于文本 */
-LanguageCh.About = "Others.Data.Name" + "\n" + "Others.InitDate" + "\n学习使用";
+LanguageCh.About = Others.Data.Name + "\n" + Others.InitDate + "\n学习使用";
 // LanguageCh.About = Other.Data.Name + '\n' + Other.InitDate + '\n学习使用';
 /**游戏难度控制器，初始化等级错误 描述文本 */
 LanguageCh.LevelManagerLevelError = "游戏难度控制器，初始化等级错误。难度等级不能为0";

@@ -7,6 +7,7 @@
  * @Email: 763103245@qq.com
  */
 var LanguageEn = Object.assign({}, LanguageCh) || {};
+/**主菜单文本 */
 LanguageEn.MainMenu = "Main Menu";
 /**设置音乐的文本 */
 LanguageEn.Sound = "Sound";
