@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 17:04:19
+ * @LastEditTime: 2023-09-22 17:21:15
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gameOver\layer\GOTouchLayer.js
  * @Email: 763103245@qq.com
  */
@@ -36,7 +36,7 @@ var GOTouchLayer = cc.Layer.extend({
         var menu = new cc.Menu(playAgain);
         //设定位置，垂直居中、y220
         menu.x = GC.w_2;
-        menu.y = 220;
+        menu.y = (220 / 480) * GC.h;
         //添加到触摸层中
         this.addChild(menu);
         // -!tag 菜单按钮点击跳转到对应网址 @wt763103245

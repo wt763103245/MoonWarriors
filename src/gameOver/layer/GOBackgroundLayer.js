@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 17:00:59
+ * @LastEditTime: 2023-09-22 17:20:39
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gameOver\layer\GOBackgroundLayer.js
  * @Email: 763103245@qq.com
  */
@@ -35,19 +35,19 @@ var GOBackgroundLayer = cc.Layer.extend({
         var maxY = GC.h;
         /**@type {cc.Sprite} 以游戏结束图片新建一个精灵 */
         var logo = new cc.Sprite(res.go_gameOver_png);
-        //设置位置，锚点为0,0，位置为(0,300)如果屏幕是320的话在左上
+        //设置位置，锚点为0,0，位置为(0,300)如果屏幕是480的话在左上
         logo.attr({
             anchorX: 0,
             anchorY: 0,
             x: 0,
-            y: (300 / 320) * maxY
+            y: (300 / 480) * maxY
         });
         this.addChild(logo);
         /**@type {cc.Sprite} 以cocos2d_html5 logo创建一个精灵 */
         var cocos2dhtml5 = new cc.Sprite(res.go_cocos2d_html5_png);
         //设定位置在(160,150)大概在中间的位置
         cocos2dhtml5.x = (160 / 320) * maxX;
-        cocos2dhtml5.y = (150 / 320) * maxY;
+        cocos2dhtml5.y = (150 / 480) * maxY;
         this.addChild(cocos2dhtml5);
     },
     /**初始化分数相关 */
@@ -59,7 +59,7 @@ var GOBackgroundLayer = cc.Layer.extend({
         var lbScore = new cc.LabelTTF(Language.YourScore + ":" + GC.SCORE, "Arial Bold", 16);
         //设置分数显示位置
         lbScore.x = (160 / 320) * maxX;
-        lbScore.y = (280 / 320) * maxY;
+        lbScore.y = (280 / 480) * maxY;
         /**@type {cc.Color} 设置文本字体颜色 */
         lbScore.color = cc.color(250, 179, 0);
         this.addChild(lbScore);
