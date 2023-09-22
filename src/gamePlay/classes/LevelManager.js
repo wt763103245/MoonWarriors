@@ -96,46 +96,72 @@ var LevelManager = cc.Class.extend({
                         for (var rIndex = 0; rIndex < selEnemy.Types.length; rIndex++) {
                             this.addEnemyToGameLayer(selEnemy.Types[rIndex]);
                         };
-                    }
-                }
+                    };
+                };
             }
         }
     },
+    /**添加敌机的移动方式
+     * @param {GC.ENEMY_MOVE_TYPE[0]|Nunber} enemyType 敌机移动方式类型
+     */
     addEnemyToGameLayer: function (enemyType) {
+        /**@type {EnemySprite} 添加的敌机 */
         var addEnemy = EnemySprite.getOrCreateEnemy(EnemyType[enemyType]);
+        //设定位置
         addEnemy.x = 80 + (GC.w - 160) * Math.random();
         addEnemy.y = GC.h;
-
+        //偏移变量，移动动作
         var offset, tmpAction;
         var a0 = 0;
         var a1 = 0;
         switch (addEnemy.moveType) {
+            //尝试撞击玩家
             case GC.ENEMY_MOVE_TYPE.ATTACK:
+                /**@type {cc.Point} 玩家飞船当前位置 */
                 offset = cc.p(this._gamePlayLayer._ship.x, this._gamePlayLayer._ship.y);
+                /**@type {cc.Action} 1秒后，移动到玩家当前位置 */
                 tmpAction = cc.moveTo(1, offset);
                 break;
+            //向下直冲，冲出屏幕
             case GC.ENEMY_MOVE_TYPE.VERTICAL:
-                offset = cc.p(0, -GC.h - addEnemy.height);
-                tmpAction = cc.moveBy(4, offset);
+                /**@type {cc.Action} 花费4秒 */
+                tmpAction = cc.moveBy(4, cc.p(0, -GC.h - addEnemy.height));
                 break;
+            //重复左右移动，左右横跳
             case GC.ENEMY_MOVE_TYPE.HORIZONTAL:
-                offset = cc.p(0, -100 - 200 * Math.random());
-                a0 = cc.moveBy(0.5, offset);
+                /**@type {cc.Action} 花费0.5秒，往下移动一段距离(-300~-100)，还在屏幕内 */
+                a0 = cc.moveBy(0.5, cc.p(0, -100 - 200 * Math.random()));
+                /**@type {cc.Action} 花费1秒，向左或者向右移动一段距离(-50~50) */
                 a1 = cc.moveBy(1, cc.p(-50 - 100 * Math.random(), 0));
+                /**返回事件，将这个事件绑定到这个敌机对象上 */
                 var onComplete = cc.callFunc(function (pSender) {
+                    /**延迟1秒 */
                     var a2 = cc.delayTime(1);
+                    /**@type {cc.Action} 花费1秒，往右移动一段距离(100~200) */
                     var a3 = cc.moveBy(1, cc.p(100 + 100 * Math.random(), 0));
+                    //执行一个动作，按顺序执行，延迟，往右移动，延迟，反转执行往右移动操作（相当于向左移动），无限重复这个动作
                     pSender.runAction(cc.sequence(a2, a3, a2.clone(), a3.reverse()).repeatForever());
                 }.bind(addEnemy));
+                //按顺序执行，向下移动，随机左右移动，执行一个回调事件
                 tmpAction = cc.sequence(a0, a1, onComplete);
                 break;
+            //向下蛇形移动
             case GC.ENEMY_MOVE_TYPE.OVERLAP:
-                var newX = (addEnemy.x <= GC.w / 2) ? 320 : -320;
-                a0 = cc.moveBy(4, cc.p(newX, -240));
-                a1 = cc.moveBy(4, cc.p(-newX, -320));
+                //移动需要的参数，游戏屏幕宽高
+                var moveX = GC.w_2;
+                var moveY = GC.h;
+                //addEnemy.x <= GC.w / 2指在屏幕的左边
+                /**x坐标，左边为屏幕的一半，右边为-屏幕的一半 */
+                var newX = (addEnemy.x <= moveX) ? moveX : -moveX;
+                /**@type {cc.Action} 向左或右移动，到以屏幕上边到下边的60%的位置 */
+                a0 = cc.moveBy(4, cc.p(newX, -moveY*0.6));
+                /**@type {cc.Action} 向上面移动左右方向相反的方向，移动到上边40%+敌机高度的位置 */
+                a1 = cc.moveBy(4, cc.p(-newX, -moveY*0.4+addEnemy.height));
+                //按顺序执行，先向移动左或右移动同时下移动到60%的高度，然后向相反的左右方向同时再向下移动出屏幕
                 tmpAction = cc.sequence(a0, a1);
                 break;
-        }
+        };
+        //执行设定好的移动方式
         addEnemy.runAction(tmpAction);
     }
 });

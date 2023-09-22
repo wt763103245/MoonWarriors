@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 14:31:50
+ * @LastEditTime: 2023-09-22 15:52:40
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\config\GameConfig.js
  * @Email: 763103245@qq.com
  */
@@ -82,11 +82,15 @@ GC.UNIT_TAG = {
     PLAYER: 1001
 };
 
-/**标签 */
+/**敌机移动类型 */
 GC.ENEMY_MOVE_TYPE = {
+    /**冲向当前玩家位置 */
     ATTACK: 0,
+    /**向下直冲 */
     VERTICAL: 1,
+    /**反复左右移动 */
     HORIZONTAL: 2,
+    /**向下蛇形移动 */
     OVERLAP: 3
 };
 
