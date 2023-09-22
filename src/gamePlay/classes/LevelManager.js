@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 16:08:51
+ * @LastEditTime: 2023-09-22 16:17:15
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\classes\LevelManager.js
  * @Email: 763103245@qq.com
  */
@@ -82,8 +82,9 @@ var LevelManager = cc.Class.extend({
                     //判断当前时间是否可以显示
                     //显示类型为Once，指只显示一次
                     if (selEnemy.ShowTime == deltaTime) {
-                        //循环行动类型
+                        //循环所有添加的类型
                         for (var tIndex = 0; tIndex < selEnemy.Types.length; tIndex++) {
+                            //添加对应的敌机
                             this.addEnemyToGameLayer(selEnemy.Types[tIndex]);
                         };
                         //删除这个数据，因为只显示一次
@@ -101,7 +102,7 @@ var LevelManager = cc.Class.extend({
             }
         }
     },
-    /**添加敌机的移动方式
+    /**添加敌机，和对应的移动方式
      * @param {GC.ENEMY_MOVE_TYPE[0]|Nunber} enemyType 敌机移动方式类型
      */
     addEnemyToGameLayer: function (enemyType) {
