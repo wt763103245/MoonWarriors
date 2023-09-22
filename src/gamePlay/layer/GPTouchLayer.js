@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-15 12:46:27
- * @FilePath: \MoonWarriors\src\gamePlay\layer\GPTouchLayer.js
+ * @LastEditTime: 2023-09-22 17:27:01
+ * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\layer\GPTouchLayer.js
  * @Email: 763103245@qq.com
  */
 //游戏状态
@@ -131,14 +131,16 @@ var GPTouchLayer = cc.Layer.extend({
     },
     /**添加游戏相关信息，比如玩家图标，分数等 */
     initAboutInfo: function () {
+        var maxX = GC.w;
+        var maxY = GC.h;
         /**@type {cc.LabelBMFont|cc.SpriteBatchNode} 分数，设置分数文本控件参数 */
         this._lbScore = new cc.LabelBMFont(LanguageEn.Score + ": 0", res.sh_arial_14_fnt);
         //设置锚点1,0，设置位置居中-5,-30
         this._lbScore.attr({
             anchorX: 1,
             anchorY: 0,
-            x: GC.w - 5,
-            y: GC.h - 30
+            x: maxX - (5 / 320) * maxX,
+            y: maxY - (30 / 480) * maxY,
         });
         /**@type {Number} 文本对齐模式，右对齐 */
         this._lbScore.textAlign = cc.TEXT_ALIGNMENT_RIGHT;
@@ -151,8 +153,8 @@ var GPTouchLayer = cc.Layer.extend({
         //设置生命图标ui的位置和缩放大小
         life.attr({
             scale: 0.6,
-            x: 30,
-            y: 460
+            x: (30 / 320) * maxX,
+            y: (460 / 480) * maxY,
         });
         //添加到游戏贴图示例批量节点上，优先度为1，标签为5
         this._texTransparentBatch.addChild(life, 1, 5);
@@ -161,8 +163,8 @@ var GPTouchLayer = cc.Layer.extend({
         this._lbLife = new cc.LabelTTF("0", "Arial", 20);
         //设置生命数量文本的位置60,463，颜色为255,0,0
         this._lbLife.attr({
-            x: 60,
-            y: 463,
+            x: (60 / 320) * maxX,
+            y: (463 / 480) * maxY,
             color: cc.color(255, 0, 0)
         });
         //添加到当前层，优先度为1000
@@ -174,8 +176,8 @@ var GPTouchLayer = cc.Layer.extend({
         this._ship = new ShipSprite("#ship01.png");
         //设置玩家初始位置160,60
         this._ship.attr({
-            x: 160,
-            y: 60
+            x: (160 / 320) * maxX,
+            y: (60 / 480) * maxY,
         });
         //添加到游戏层，优先级为1
         this.addChild(this._ship, 1);
