@@ -176,8 +176,8 @@ var GPTouchLayer = cc.Layer.extend({
         this._ship = new ShipSprite("#ship01.png");
         //设置玩家初始位置160,60
         this._ship.attr({
-            x: (160 / 320) * maxX,
-            y: (60 / 480) * maxY,
+            x: (160 / 320) * GC.w,
+            y: (60 / 480) * GC.h,
         });
         //添加到游戏层，优先级为1
         this.addChild(this._ship, 1);
