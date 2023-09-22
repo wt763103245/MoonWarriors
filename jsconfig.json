@@ -54,11 +54,12 @@
   "exclude": [
     "node_modules",
     "**/node_modules/*",
-    "dist",
-    "build",
+    // "dist",
+    // "build",
     "res",
-    "res1",
+    // "res1",
     "cocosstudio",
+    "publish",
     "**/*.[!js]"
   ],
   //工程引用

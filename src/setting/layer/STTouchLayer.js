@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 14:20:38
- * @FilePath: \OneDrive\program\js\MoonWarriors\src\setting\layer\STTouchLayer.js
+ * @LastEditTime: 2023-09-22 18:00:41
+ * @FilePath: \MoonWarriors\src\setting\layer\STTouchLayer.js
  * @Email: 763103245@qq.com
  */
 /**读取设置 */
@@ -64,7 +64,6 @@ var STTouchLayer = cc.Layer.extend({
             new cc.MenuItemFont(Language.Normal),
             new cc.MenuItemFont(Language.Hard)
         );
-        cc.log(GC.GAMESETTINGS.CURRENTLEVEL)
         //初始化时，获取当前游戏难度
         item2.setSelectedIndex(GC.GAMESETTINGS.CURRENTLEVEL);
         //设置菜单按钮回调
@@ -101,7 +100,6 @@ var STTouchLayer = cc.Layer.extend({
     onModeControl: function (sender) {
         /**@type {Number} 获取当前选中的选项的索引 */
         var selectedIndex = sender.getSelectedIndex();
-        // cc.log("当前难度选项索引" + selectedIndex);
         // var selectedItem = sender.getSelectedItem(); // 获取当前选中的选项  
         /**@type {Number} 游戏难度变更 */
         GC.GAMESETTINGS.CURRENTLEVEL = selectedIndex;
