@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-15 14:39:37
- * @FilePath: \MoonWarriors\src\config\GameConfig.js
+ * @LastEditTime: 2023-09-22 14:31:50
+ * @FilePath: \OneDrive\program\js\MoonWarriors\src\config\GameConfig.js
  * @Email: 763103245@qq.com
  */
 /**视窗相关参数，如果在网页就是网页宽高，如果在pc就是窗口大小，如果在手机就是手机分辨率大小 */
@@ -19,6 +19,7 @@ GC.w_2 = GC.winSize.width / 2;
 /**@type {Number} 游戏宽度/2 */
 GC.h_2 = GC.winSize.height / 2;
 
+//根据某些浏览器（例如 Chrome）的政策，AudioContext 对象不能在页面加载时自动启动，而必须在用户与页面进行交互后才能启动。
 /**@type {Boolean} 背景音乐开关，默认关闭 */
 GC.SOUND_ON = false;
 
@@ -94,3 +95,10 @@ GC.GAMESETTINGS = {
     /**游戏难度 */
     CURRENTLEVEL: 0,
 };
+
+_saveStr = "MoonWarriors_wt_";
+/**游戏保存相关 */
+GC.FILENAME = {
+    /**@type {String} 设置界面 */
+    SETTING: _saveStr + "SETTING",
+}

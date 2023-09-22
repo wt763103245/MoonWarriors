@@ -2,10 +2,23 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-15 14:27:07
- * @FilePath: \MoonWarriors\src\setting\layer\STTouchLayer.js
+ * @LastEditTime: 2023-09-22 14:20:38
+ * @FilePath: \OneDrive\program\js\MoonWarriors\src\setting\layer\STTouchLayer.js
  * @Email: 763103245@qq.com
  */
+/**读取设置 */
+var LoadSetting = () => {
+    // 从本地获取保存的数据  
+    var data = localStorage.getItem(GC.FILENAME.SETTING);
+    // 如果数据存在
+    if (data) {
+        // 解析保存的数据为原始类型  
+        var data = JSON.parse(data);
+        //设置当前游戏设置
+        GC.SOUND_ON = data.sound;
+        GC.GAMESETTINGS.CURRENTLEVEL = data.level;
+    };
+}
 /**设置界面触摸层 */
 var STTouchLayer = cc.Layer.extend({
     ctor: function () {
@@ -36,7 +49,7 @@ var STTouchLayer = cc.Layer.extend({
             new cc.MenuItemFont(Language.Off)
         );
         //设置函数回调，开启/关闭音乐
-        item1.setCallback(this.onSoundControl);
+        item1.setCallback(this.onSoundControl.bind(this));
         item1.setSelectedIndex(GC.SOUND_ON ? 0 : 1);
         //难度
         cc.MenuItemFont.setFontName("Arial");
@@ -55,7 +68,7 @@ var STTouchLayer = cc.Layer.extend({
         //初始化时，获取当前游戏难度
         item2.setSelectedIndex(GC.GAMESETTINGS.CURRENTLEVEL);
         //设置菜单按钮回调
-        item2.setCallback(this.onModeControl, item2);
+        item2.setCallback(this.onModeControl.bind(this), item2);
         //返回
         cc.MenuItemFont.setFontName("Arial");
         cc.MenuItemFont.setFontSize(26);
@@ -78,7 +91,9 @@ var STTouchLayer = cc.Layer.extend({
         } else {
             audioEngine.stopMusic();
             audioEngine.stopAllEffects();
-        }
+        };
+        //保存设置
+        this.saveSetting();
     },
     /**难度菜单按钮回调
      * @param {*} sender 难度设置按钮
@@ -88,12 +103,26 @@ var STTouchLayer = cc.Layer.extend({
         var selectedIndex = sender.getSelectedIndex();
         // cc.log("当前难度选项索引" + selectedIndex);
         // var selectedItem = sender.getSelectedItem(); // 获取当前选中的选项  
-        // cc.log("当前难度选项文本");
-        // cc.log(selectedItem);
+        /**@type {Number} 游戏难度变更 */
         GC.GAMESETTINGS.CURRENTLEVEL = selectedIndex;
+
+        //保存到本地
+        this.saveSetting();
+    },
+    /**读取设置 */
+    loadSetting() {
+        LoadSetting();
+    },
+    /**保存设置 */
+    saveSetting() {
+        // 将数据保存到本地  
+        localStorage.setItem(GC.FILENAME.SETTING, JSON.stringify({
+            sound: GC.SOUND_ON,
+            level: GC.GAMESETTINGS.CURRENTLEVEL,
+        }));
     },
     /**返回菜单按钮回调 */
     onBackCallback: function () {
         cc.director.runScene(new cc.TransitionFade(1.2, new MainMenuScene()));
-    }
+    },
 });
