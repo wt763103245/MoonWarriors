@@ -33,7 +33,7 @@ var STTouchLayer = cc.Layer.extend({
         /**@type {cc.Sprite} option图片 */
         var title = new cc.Sprite(cacheImage, cc.rect(0, 0, 134, 34));
         title.x = GC.w_2;
-        title.y = GC.h - 120;
+        title.y = GC.h - ((120 / 480) * GC.h);
         this.addChild(title);
         //设置MenuItemFont字体以及大小
         //Sound

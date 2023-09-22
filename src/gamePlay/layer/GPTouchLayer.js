@@ -139,8 +139,8 @@ var GPTouchLayer = cc.Layer.extend({
         this._lbScore.attr({
             anchorX: 1,
             anchorY: 0,
-            x: maxX - (5 / 320) * maxX,
-            y: maxY - (30 / 480) * maxY,
+            x: maxX - ((5 / 320) * maxX),
+            y: maxY - ((30 / 480) * maxY),
         });
         /**@type {Number} 文本对齐模式，右对齐 */
         this._lbScore.textAlign = cc.TEXT_ALIGNMENT_RIGHT;

@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-06 17:20:27
+ * @LastEditTime: 2023-09-22 17:38:35
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\mainMenu\layer\MMTouchLayer.js
  * @Email: 763103245@qq.com
  */
@@ -86,7 +86,7 @@ var MMTouchLayer = cc.Layer.extend({
         var menu = new cc.Menu(newGame, gameSettings, about);
         menu.alignItemsVerticallyWithPadding(10);
         menu.x = GC.w_2;
-        menu.y = GC.h_2 - 80;
+        menu.y = GC.h_2 - ((80 / 480) * GC.h);
         this.addChild(menu, 1, 2);
     },
     /**开始新游戏 */
@@ -116,8 +116,8 @@ var MMTouchLayer = cc.Layer.extend({
         //设置flare 的渲染混合模式
         flare.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
         flare.attr({
-            x: -30,
-            y: 297,
+            x: (-30 / 320) * GC.w,
+            y: (297 / 480) * GC.h,
             /*x: GC.w_2,
             y: GC.h_2,*/
             visible: true,
@@ -129,7 +129,7 @@ var MMTouchLayer = cc.Layer.extend({
         var opacityAnim = cc.fadeIn(0.5);//透明度渐变0-255
         //为动作加上easing效果，具体参考tests里面的示例
         var biggerEase = cc.scaleBy(0.7, 1.2, 1.2).easing(cc.easeSineOut());
-        var easeMove = cc.moveBy(0.5, cc.p(328, 0)).easing(cc.easeSineOut());
+        var easeMove = cc.moveBy(0.5, cc.p((328 / 320) * GC.w, 0)).easing(cc.easeSineOut());
         var rotateEase = cc.rotateBy(2.5, 90).easing(cc.easeExponentialOut());
         var bigger = cc.scaleTo(0.5, 1);
         //函数回调动作

@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 16:32:20
+ * @LastEditTime: 2023-09-22 17:47:02
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\classes\LevelManager.js
  * @Email: 763103245@qq.com
  */
@@ -130,16 +130,18 @@ var LevelManager = cc.Class.extend({
                 break;
             //重复左右移动，左右横跳
             case GC.ENEMY_MOVE_TYPE.HORIZONTAL:
+                var maxX = GC.w;
+                var maxY = GC.h;
                 /**@type {cc.Action} 花费0.5秒，往下移动一段距离(-300~-100)，还在屏幕内 */
-                a0 = cc.moveBy(0.5, cc.p(0, -100 - 200 * Math.random()));
+                a0 = cc.moveBy(0.5, cc.p(0, ((-100 - 200 * Math.random()) / 480) * maxY));
                 /**@type {cc.Action} 花费1秒，向左或者向右移动一段距离(-50~50) */
-                a1 = cc.moveBy(1, cc.p(-50 - 100 * Math.random(), 0));
+                a1 = cc.moveBy(1, cc.p(((-50 - 100 * Math.random()) / 320) * maxX, 0));
                 /**返回事件，将这个事件绑定到这个敌机对象上 */
                 var onComplete = cc.callFunc(function (pSender) {
                     /**延迟1秒 */
                     var a2 = cc.delayTime(1);
                     /**@type {cc.Action} 花费1秒，往右移动一段距离(100~200) */
-                    var a3 = cc.moveBy(1, cc.p(100 + 100 * Math.random(), 0));
+                    var a3 = cc.moveBy(1, cc.p(((100 + 100 * Math.random()) / 320) * maxX, 0));
                     //执行一个动作，按顺序执行，延迟，往右移动，延迟，反转执行往右移动操作（相当于向左移动），无限重复这个动作
                     pSender.runAction(cc.sequence(a2, a3, a2.clone(), a3.reverse()).repeatForever());
                 }.bind(addEnemy));
@@ -154,11 +156,11 @@ var LevelManager = cc.Class.extend({
                 //addEnemy.x <= GC.w / 2指在屏幕的左边
                 /**x坐标，左边为屏幕的一半，右边为-屏幕的一半 */
                 var newX = (addEnemy.x <= moveX) ? moveX : -moveX;
-                /**@type {cc.Action} 向左或右移动，到以屏幕上边到下边的60%的位置 */
-                a0 = cc.moveBy(4, cc.p(newX, -moveY * 0.6));
-                /**@type {cc.Action} 向上面移动左右方向相反的方向，移动到上边40%+敌机高度的位置 */
-                a1 = cc.moveBy(4, cc.p(-newX, -moveY * 0.4 - addEnemy.height));
-                //按顺序执行，先向移动左或右移动同时下移动到60%的高度，然后向相反的左右方向同时再向下移动出屏幕
+                /**@type {cc.Action} 向左或右移动，到以屏幕上边到下边的50%的位置 */
+                a0 = cc.moveBy(4, cc.p(newX, -moveY * (240 / 480)));
+                /**@type {cc.Action} 向上面移动左右方向相反的方向，移动到上边50%+敌机高度的位置 */
+                a1 = cc.moveBy(4, cc.p(-newX, -moveY * (240 / 480) - addEnemy.height));
+                //按顺序执行，先向移动左或右移动同时下移动到50%的高度，然后向相反的左右方向同时再向下移动出屏幕
                 tmpAction = cc.sequence(a0, a1);
                 break;
         };

@@ -18,7 +18,7 @@ var MMMainMenuLayer = cc.Layer.extend({
         menu.y = 0;
         systemMenu.attr({
             x: GC.w_2,
-            y: 15,
+            y: (15 / 480) * GC.h,
             anchorX: 0.5,
             anchorY: 0
         });

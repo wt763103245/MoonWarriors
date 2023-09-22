@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-04 18:21:45
+ * @LastEditTime: 2023-09-22 17:35:51
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\mainMenu\layer\MMBackgroundLayer.js
  * @Email: 763103245@qq.com
  */
@@ -47,6 +47,7 @@ var MMBackgroundLayer = cc.Layer.extend({
     },
     /**初始化logo */
     initLogo: function () {
+        var maxY = GC.h;
         /**@type {String} 添加图片缓存 */
         var cacheImage = cc.textureCache.addImage(res.mm_logo_png);
         /**@type {cc.Sprite} 主界面logo精灵 */
@@ -55,7 +56,7 @@ var MMBackgroundLayer = cc.Layer.extend({
         this._sptLogo.attr({
             //修改位置
             x: GC.w_2,
-            y: GC.h - 160
+            y: maxY - ((160 / 480) * maxY)
         });
         //添加到当前界面，优先级为1
         this.addChild(this._sptLogo, 1);
@@ -83,13 +84,13 @@ var MMBackgroundLayer = cc.Layer.extend({
             /**@type {Number} 随机x位置 */
             this._ship.x = Math.random() * GC.w;
             /**@type {Number} 将飞船移动到屏幕下面y10 */
-            this._ship.y = 10;
+            this._ship.y = (10/480) * GC.h;
             //让飞船执行一个动作，花费一定时间，移动到对应位置
             this._ship.runAction(cc.moveBy(
                 //花费1-5秒
                 parseInt(5 * Math.random(), 10),
                 //移动到x（0-GC.w），y（490）的位置
-                cc.p(Math.random() * GC.w, this._ship.y + 480)
+                cc.p(Math.random() * GC.w, this._ship.y + GC.h)
                 //-！这里可能会有bug，因为有可能还没有到490的位置就触发了这个，也有可能新的动作会把旧的动作顶掉 @wt
             ));
         }
