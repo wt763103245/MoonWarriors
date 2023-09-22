@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-15 14:16:38
- * @FilePath: \MoonWarriors\src\gamePlay\classes\LevelManager.js
+ * @LastEditTime: 2023-09-22 16:08:51
+ * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\classes\LevelManager.js
  * @Email: 763103245@qq.com
  */
 /**等级控制器 */
@@ -36,7 +36,7 @@ var LevelManager = cc.Class.extend({
         for (var i = 0; i < level.enemies.length; i++) {
             //重新设定敌机显示时间，转化成数字类型(时间)
             locCurrentLevelEnemies[i].ShowTime = this._minuteToSecond(locCurrentLevelEnemies[i].ShowTime);
-        }
+        };
         this._currentLevel.enemies = locCurrentLevelEnemies.slice();
     },
     /**获取敌机显示时间，转化成数字（时间）
@@ -73,7 +73,7 @@ var LevelManager = cc.Class.extend({
         //生成敌机
         /**敌机类型列表 */
         var enemies = locCurrentLevel.enemies;
-        for (var i = 0; i < enemies.length; i++) {
+        for (var i = enemies.length - 1; i >= 0; i--) {
             /**随机生成的敌机数据 */
             var selEnemy = enemies[i];
             if (selEnemy) {
@@ -82,18 +82,20 @@ var LevelManager = cc.Class.extend({
                     //判断当前时间是否可以显示
                     //显示类型为Once，指只显示一次
                     if (selEnemy.ShowTime == deltaTime) {
-                        // -! tag @wt763103245
+                        //循环行动类型
                         for (var tIndex = 0; tIndex < selEnemy.Types.length; tIndex++) {
                             this.addEnemyToGameLayer(selEnemy.Types[tIndex]);
-                        }
-                    }
+                        };
+                        //删除这个数据，因为只显示一次
+                        enemies.splice(i);
+                    };
                     //重复显示
                 } else if (selEnemy.ShowType === "Repeate") {
                     //判断当前时间是否可以显示
                     if (deltaTime % selEnemy.ShowTime === 0) {
                         for (var rIndex = 0; rIndex < selEnemy.Types.length; rIndex++) {
                             this.addEnemyToGameLayer(selEnemy.Types[rIndex]);
-                        }
+                        };
                     }
                 }
             }
