@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 16:17:15
+ * @LastEditTime: 2023-09-22 16:32:20
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\classes\LevelManager.js
  * @Email: 763103245@qq.com
  */
@@ -155,9 +155,9 @@ var LevelManager = cc.Class.extend({
                 /**x坐标，左边为屏幕的一半，右边为-屏幕的一半 */
                 var newX = (addEnemy.x <= moveX) ? moveX : -moveX;
                 /**@type {cc.Action} 向左或右移动，到以屏幕上边到下边的60%的位置 */
-                a0 = cc.moveBy(4, cc.p(newX, -moveY*0.6));
+                a0 = cc.moveBy(4, cc.p(newX, -moveY * 0.6));
                 /**@type {cc.Action} 向上面移动左右方向相反的方向，移动到上边40%+敌机高度的位置 */
-                a1 = cc.moveBy(4, cc.p(-newX, -moveY*0.4+addEnemy.height));
+                a1 = cc.moveBy(4, cc.p(-newX, -moveY * 0.4 - addEnemy.height));
                 //按顺序执行，先向移动左或右移动同时下移动到60%的高度，然后向相反的左右方向同时再向下移动出屏幕
                 tmpAction = cc.sequence(a0, a1);
                 break;
