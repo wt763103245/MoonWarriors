@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-13 16:38:31
+ * @LastEditTime: 2023-09-22 17:04:19
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gameOver\layer\GOTouchLayer.js
  * @Email: 763103245@qq.com
  */
@@ -39,7 +39,7 @@ var GOTouchLayer = cc.Layer.extend({
         menu.y = 220;
         //添加到触摸层中
         this.addChild(menu);
-
+        // -!tag 菜单按钮点击跳转到对应网址 @wt763103245
         /*var labCocos = new cc.LabelTTF("Download Cocos2d-html5","Arial",14);
         var labSample = new cc.LabelTTF("Download This Sample","Arial",14);
         var menu1 = new cc.MenuItemLabel(labCocos, function(){
