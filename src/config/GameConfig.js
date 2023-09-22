@@ -62,9 +62,9 @@ GC.CONTAINER = {
 
 /**子弹速度 */
 GC.BULLET_SPEED = {
-    /**我方子弹速度 */
-    ENEMY: -200,
     /**敌方子弹速度 */
+    ENEMY: -200,
+    /**我方子弹速度 */
     SHIP: 900
 };
 

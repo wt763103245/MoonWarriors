@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 15:13:24
+ * @LastEditTime: 2023-09-22 16:43:51
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\EnemySprite.js
  * @Email: 763103245@qq.com
  */
@@ -40,18 +40,23 @@ var EnemySprite = cc.Sprite.extend({
     update: function (dt) {
         var x = this.x;
         var y = this.y;
+        //出屏幕
         if ((x < 0 || x > 320) && (y < 0 || y > 480)) {
             this.active = false;
-        }
-
+        };
+        //生命值低于0
         if (this.HP <= 0) {
             this.active = false;
             this.destroy();
-        }
+        };
     },
+    /**销毁敌机 */
     destroy: function () {
+        //增加分数
         GC.SCORE += this.scoreValue;
+        /**@type {ExplosionSprite} 爆炸效果精灵 */
         var a = ExplosionSprite.getOrCreateExplosion();
+        //设置位置
         a.attr({
             x: this.x,
             y: this.y

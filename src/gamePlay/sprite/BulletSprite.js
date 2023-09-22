@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 15:20:53
+ * @LastEditTime: 2023-09-22 16:35:18
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\BulletSprite.js
  * @Email: 763103245@qq.com
  */
@@ -34,7 +34,7 @@ var BulletSprite = cc.Sprite.extend({
         //受到1点伤害
         this.HP--;
     },
-    //判断是否碰撞
+    //子弹碰撞盒
     collideRect: function (x, y) {
         return cc.rect(x - 3, y - 3, 6, 6);
     }
@@ -92,10 +92,10 @@ BulletSprite.preSet = function () {
         bullet = BulletSprite.create(GC.BULLET_SPEED.SHIP, "W1.png", GC.ENEMY_ATTACK_MODE.NORMAL, 3000, GC.UNIT_TAG.PLAYER_BULLET);
         bullet.visible = false;
         bullet.active = false;
-    }
+    };
     for (var i = 0; i < 10; i++) {
         bullet = BulletSprite.create(GC.BULLET_SPEED.ENEMY, "W2.png", GC.ENEMY_ATTACK_MODE.NORMAL, 3000, GC.UNIT_TAG.ENMEY_BULLET);
         bullet.visible = false;
         bullet.active = false;
-    }
+    };
 };
