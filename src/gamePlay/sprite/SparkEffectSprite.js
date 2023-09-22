@@ -2,10 +2,11 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-08 19:43:28
+ * @LastEditTime: 2023-09-22 16:52:20
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\SparkEffectSprite.js
  * @Email: 763103245@qq.com
  */
+/**火花效果，另两种爆炸效果 */
 var SparkEffectSprite = cc.Class.extend({
     /**@type {Boolean} 启用状态，默认为启用 */
     active: true,
