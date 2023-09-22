@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-08 18:21:47
+ * @LastEditTime: 2023-09-22 15:20:53
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\BulletSprite.js
  * @Email: 763103245@qq.com
  */
@@ -75,11 +75,14 @@ BulletSprite.create = function (bulletSpeed, weaponType, attackMode, zOrder, mod
     //创建子弹对象并放到批处理层
     var bullet = new BulletSprite(bulletSpeed, weaponType, attackMode);
     g_GPTouchLayer.addBullet(bullet, zOrder, mode);
-    if (mode == GC.UNIT_TAG.PLAYER_BULLET) {
-        GC.CONTAINER.PLAYER_BULLETS.push(bullet);
-        GC.CONTAINER.PLAYER_BULLETS.push(bullet);
-        GC.CONTAINER.ENEMY_BULLETS.push(bullet);
-    }
+    switch (mode) {
+        case GC.UNIT_TAG.PLAYER_BULLET:
+            GC.CONTAINER.PLAYER_BULLETS.push(bullet);
+            break;
+        case GC.UNIT_TAG.ENMEY_BULLET:
+            GC.CONTAINER.ENEMY_BULLETS.push(bullet);
+            break;
+    };
     return bullet;
 };
 /**创建贴图资源，用来优先加载然后使用 */

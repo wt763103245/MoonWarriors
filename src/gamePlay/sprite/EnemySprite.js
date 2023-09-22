@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-08 17:00:11
+ * @LastEditTime: 2023-09-22 15:13:24
  * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\EnemySprite.js
  * @Email: 763103245@qq.com
  */
@@ -68,8 +68,11 @@ var EnemySprite = cc.Sprite.extend({
         this.unschedule(this.shoot);
         GC.ACTIVE_ENEMIES--;
     },
+    /**发射子弹 */
     shoot: function () {
+        //获得当前敌机位置
         var x = this.x, y = this.y;
+        /**@type {BulletSprite} 获得子弹精灵 */
         var b = BulletSprite.getOrCreateBullet(this.bulletSpeed, "W2.png", this.attackMode, 3000, GC.UNIT_TAG.ENMEY_BULLET);
         b.x = x;
         b.y = y - this.height * 0.2;
@@ -83,7 +86,10 @@ var EnemySprite = cc.Sprite.extend({
         return cc.rect(x - w / 2, y - h / 4, w, h / 2 + 20);
     }
 });
-
+/**得到一个敌机精灵，如果有了则直接用，没有空闲的则创建
+ * @param {EnemyType[0]} arg 
+ * @returns 
+ */
 EnemySprite.getOrCreateEnemy = function (arg) {
     var selChild = null;
     for (var j = 0; j < GC.CONTAINER.ENEMIES.length; j++) {
