@@ -35,7 +35,6 @@ public interface IGameTuningService extends android.os.IInterface
   /** Local-side IPC implementation stub class. */
   public static abstract class Stub extends android.os.Binder implements com.enhance.gameservice.IGameTuningService
   {
-    private static final java.lang.String DESCRIPTOR = "com.enhance.gameservice.IGameTuningService";
     /** Construct the stub at attach it to the interface. */
     public Stub()
     {
@@ -63,6 +62,9 @@ public interface IGameTuningService extends android.os.IInterface
     @Override public boolean onTransact(int code, android.os.Parcel data, android.os.Parcel reply, int flags) throws android.os.RemoteException
     {
       java.lang.String descriptor = DESCRIPTOR;
+      if (code >= android.os.IBinder.FIRST_CALL_TRANSACTION && code <= android.os.IBinder.LAST_CALL_TRANSACTION) {
+        data.enforceInterface(descriptor);
+      }
       switch (code)
       {
         case INTERFACE_TRANSACTION:
@@ -70,59 +72,58 @@ public interface IGameTuningService extends android.os.IInterface
           reply.writeString(descriptor);
           return true;
         }
+      }
+      switch (code)
+      {
         case TRANSACTION_setPreferredResolution:
         {
-          data.enforceInterface(descriptor);
           int _arg0;
           _arg0 = data.readInt();
           int _result = this.setPreferredResolution(_arg0);
           reply.writeNoException();
           reply.writeInt(_result);
-          return true;
+          break;
         }
         case TRANSACTION_setFramePerSecond:
         {
-          data.enforceInterface(descriptor);
           int _arg0;
           _arg0 = data.readInt();
           int _result = this.setFramePerSecond(_arg0);
           reply.writeNoException();
           reply.writeInt(_result);
-          return true;
+          break;
         }
         case TRANSACTION_boostUp:
         {
-          data.enforceInterface(descriptor);
           int _arg0;
           _arg0 = data.readInt();
           int _result = this.boostUp(_arg0);
           reply.writeNoException();
           reply.writeInt(_result);
-          return true;
+          break;
         }
         case TRANSACTION_getAbstractTemperature:
         {
-          data.enforceInterface(descriptor);
           int _result = this.getAbstractTemperature();
           reply.writeNoException();
           reply.writeInt(_result);
-          return true;
+          break;
         }
         case TRANSACTION_setGamePowerSaving:
         {
-          data.enforceInterface(descriptor);
           boolean _arg0;
           _arg0 = (0!=data.readInt());
           int _result = this.setGamePowerSaving(_arg0);
           reply.writeNoException();
           reply.writeInt(_result);
-          return true;
+          break;
         }
         default:
         {
           return super.onTransact(code, data, reply, flags);
         }
       }
+      return true;
     }
     private static class Proxy implements com.enhance.gameservice.IGameTuningService
     {
@@ -148,9 +149,6 @@ public interface IGameTuningService extends android.os.IInterface
           _data.writeInterfaceToken(DESCRIPTOR);
           _data.writeInt(resolution);
           boolean _status = mRemote.transact(Stub.TRANSACTION_setPreferredResolution, _data, _reply, 0);
-          if (!_status && getDefaultImpl() != null) {
-            return getDefaultImpl().setPreferredResolution(resolution);
-          }
           _reply.readException();
           _result = _reply.readInt();
         }
@@ -169,9 +167,6 @@ public interface IGameTuningService extends android.os.IInterface
           _data.writeInterfaceToken(DESCRIPTOR);
           _data.writeInt(fps);
           boolean _status = mRemote.transact(Stub.TRANSACTION_setFramePerSecond, _data, _reply, 0);
-          if (!_status && getDefaultImpl() != null) {
-            return getDefaultImpl().setFramePerSecond(fps);
-          }
           _reply.readException();
           _result = _reply.readInt();
         }
@@ -190,9 +185,6 @@ public interface IGameTuningService extends android.os.IInterface
           _data.writeInterfaceToken(DESCRIPTOR);
           _data.writeInt(seconds);
           boolean _status = mRemote.transact(Stub.TRANSACTION_boostUp, _data, _reply, 0);
-          if (!_status && getDefaultImpl() != null) {
-            return getDefaultImpl().boostUp(seconds);
-          }
           _reply.readException();
           _result = _reply.readInt();
         }
@@ -210,9 +202,6 @@ public interface IGameTuningService extends android.os.IInterface
         try {
           _data.writeInterfaceToken(DESCRIPTOR);
           boolean _status = mRemote.transact(Stub.TRANSACTION_getAbstractTemperature, _data, _reply, 0);
-          if (!_status && getDefaultImpl() != null) {
-            return getDefaultImpl().getAbstractTemperature();
-          }
           _reply.readException();
           _result = _reply.readInt();
         }
@@ -231,9 +220,6 @@ public interface IGameTuningService extends android.os.IInterface
           _data.writeInterfaceToken(DESCRIPTOR);
           _data.writeInt(((enable)?(1):(0)));
           boolean _status = mRemote.transact(Stub.TRANSACTION_setGamePowerSaving, _data, _reply, 0);
-          if (!_status && getDefaultImpl() != null) {
-            return getDefaultImpl().setGamePowerSaving(enable);
-          }
           _reply.readException();
           _result = _reply.readInt();
         }
@@ -243,24 +229,14 @@ public interface IGameTuningService extends android.os.IInterface
         }
         return _result;
       }
-      public static com.enhance.gameservice.IGameTuningService sDefaultImpl;
     }
     static final int TRANSACTION_setPreferredResolution = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
     static final int TRANSACTION_setFramePerSecond = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
     static final int TRANSACTION_boostUp = (android.os.IBinder.FIRST_CALL_TRANSACTION + 2);
     static final int TRANSACTION_getAbstractTemperature = (android.os.IBinder.FIRST_CALL_TRANSACTION + 3);
     static final int TRANSACTION_setGamePowerSaving = (android.os.IBinder.FIRST_CALL_TRANSACTION + 4);
-    public static boolean setDefaultImpl(com.enhance.gameservice.IGameTuningService impl) {
-      if (Stub.Proxy.sDefaultImpl == null && impl != null) {
-        Stub.Proxy.sDefaultImpl = impl;
-        return true;
-      }
-      return false;
-    }
-    public static com.enhance.gameservice.IGameTuningService getDefaultImpl() {
-      return Stub.Proxy.sDefaultImpl;
-    }
   }
+  public static final java.lang.String DESCRIPTOR = "com.enhance.gameservice.IGameTuningService";
   public int setPreferredResolution(int resolution) throws android.os.RemoteException;
   public int setFramePerSecond(int fps) throws android.os.RemoteException;
   public int boostUp(int seconds) throws android.os.RemoteException;

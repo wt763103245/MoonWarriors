@@ -18,9 +18,9 @@
         // "js",
       ]
     },
-    /*//编译选项target为ES6
-    // "target": "es6",
-    //编译选项target为ES6
+    // 编译选项target为ES6
+    "target": "ES2022",
+    /*
     // "module": "commonjs",
     //输出目录为./dist
     // "outDir": "./dist"

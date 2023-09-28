@@ -75,4 +75,7 @@ cc.game.onStart = function(){
         cc.director.runScene(new MainMenuScene());
     }, this);
 };
-cc.game.run();
+console.log(String(cc.game.run()));
+// cc.log("启动---------------------");
+// cc.log(cc.game);
+// cc.game.run();
