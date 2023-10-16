@@ -21,11 +21,13 @@ var SettingLayer = cc.Layer.extend({
     },
     /**添加背景层 */
     addBackgroundLayer: function () {
+        console.log("----test添加背景层");
         this._backgroundLayer = new STBackgroundLayer();
         this.addChild(this._backgroundLayer);
     },
     /**添加触摸层 */
     addTouchLayer: function () {
+        console.log("----test添加触摸层");
         this._touchLayer = new STTouchLayer();
         this.addChild(this._touchLayer);
     }

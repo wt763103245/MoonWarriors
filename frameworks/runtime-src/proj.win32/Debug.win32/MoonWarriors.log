@@ -1,34 +1,45 @@
-﻿生成启动时间为 2023/9/28 20:10:31。
-     1>项目“C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\MoonWarriors.vcxproj”在节点 2 上(Build 个目标)。
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1193,5): warning MSB8012: TargetPath(C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\MoonWarriors.exe) does not match the Linker's OutputFile property value (C:\Users\wt763\OneDrive\program\js\MoonWarriors\simulator\win32\MoonWarriors.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+﻿生成启动时间为 2023/10/16 16:04:19。
+     1>项目“C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\MoonWarriors.vcxproj”在节点 2 上(Build 个目标)。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1193,5): warning MSB8012: TargetPath(C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\MoonWarriors.exe) does not match the Linker's OutputFile property value (C:\test\MoonWarriors\simulator\win32\MoonWarriors.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
      1>PreLinkEvent:
-         if not exist "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\" mkdir "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\"
-         xcopy /Y /Q "C:\Cocos\Cocos2d-x\cocos2d-x-3.10\prebuilt\win32\*.*" "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\"
+         if not exist "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\" mkdir "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Cocos\Cocos2d-x\cocos2d-x-3.10\prebuilt\win32\*.*" "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\"
          
          :VCEnd
          复制了 60 个文件
        Link:
-         MoonWarriors.vcxproj -> C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\MoonWarriors.exe
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\../../../simulator/win32/MoonWarriors.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\\" /LIBPATH:"C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\\" libcurl_imp.lib "mozjs-33.lib" ws2_32.lib sqlite3.lib websockets.lib opengl32.lib glew32.lib libzlib.lib libwebp.lib libiconv.lib freetype.lib winmm.lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libcmt.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\../../../simulator/win32/MoonWarriors.pdb" /SUBSYSTEM:WINDOWS,"5.01" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\MoonWarriors.lib" /MACHINE:X86 /SAFESEH Debug.win32\game.res
+         Debug.win32\RuntimeJsImpl.obj
+         Debug.win32\SimpleConfigParser.obj
+         Debug.win32\main.obj
+         Debug.win32\AppDelegate.obj
+         Debug.win32\SimulatorWin.obj
+     1>RuntimeJsImpl.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/OPT:LBR”规范)
+            正在创建库 C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\MoonWarriors.lib 和对象 C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\MoonWarriors.exp
+         MoonWarriors.vcxproj -> C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\MoonWarriors.exe
        CustomBuildStep:
-         if not exist "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32" mkdir "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32"
-         xcopy "C:\Cocos\Cocos2d-x\cocos2d-x-3.10\cocos\scripting\js-bindings\script" "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32\script" /D /E /I /F /Y
-         xcopy "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\..\..\..\src" "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32\src" /D /E /I /F /Y
-         xcopy "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\..\..\..\res" "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32\res" /D /E /I /F /Y
-         copy "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\..\..\..\main.js" "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32" /Y
-         copy "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\..\..\..\project.json" "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32" /Y
-         xcopy /Y /Q "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\*.dll" "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32"
-         xcopy /Y /Q "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\..\Classes\ide-support\lang" "C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32"
+         if not exist "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32" mkdir "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32"
+         xcopy "C:\Cocos\Cocos2d-x\cocos2d-x-3.10\cocos\scripting\js-bindings\script" "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32\script" /D /E /I /F /Y
+         xcopy "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\..\..\..\src" "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32\src" /D /E /I /F /Y
+         xcopy "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\..\..\..\res" "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32\res" /D /E /I /F /Y
+         copy "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\..\..\..\main.js" "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32" /Y
+         copy "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\..\..\..\project.json" "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32" /Y
+         xcopy /Y /Q "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\*.dll" "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32"
+         xcopy /Y /Q "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\..\Classes\ide-support\lang" "C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\../../../../simulator/win32"
          :VCEnd
-         复制了 0 个文件
-         C:\Users\wt763\OneDrive\program\js\MoonWarriors\src\setting\layer\STTouchLayer.js -> C:\Users\wt763\OneDrive\program\js\MoonWarriors\simulator\win32\src\setting\layer\STTouchLayer.js
+         C:\Cocos\Cocos2d-x\cocos2d-x-3.10\cocos\scripting\js-bindings\script\debugger\README.md -> C:\test\MoonWarriors\simulator\win32\script\debugger\README.md
          复制了 1 个文件
+         C:\test\MoonWarriors\src\about\layer\ABBackgroundLayer.js -> C:\test\MoonWarriors\simulator\win32\src\about\layer\ABBackgroundLayer.js
+         C:\test\MoonWarriors\src\setting\layer\STBackgroundLayer.js -> C:\test\MoonWarriors\simulator\win32\src\setting\layer\STBackgroundLayer.js
+         C:\test\MoonWarriors\src\tools\addFunc.js -> C:\test\MoonWarriors\simulator\win32\src\tools\addFunc.js
+         复制了 3 个文件
          复制了 0 个文件
          已复制         1 个文件。
          已复制         1 个文件。
          复制了 16 个文件
          复制了 1 个文件
-     1>已完成生成项目“C:\Users\wt763\OneDrive\program\js\MoonWarriors\frameworks\runtime-src\proj.win32\MoonWarriors.vcxproj”(Build 个目标)的操作。
+     1>已完成生成项目“C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\MoonWarriors.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:02.40
+已用时间 00:00:06.14

@@ -15,20 +15,14 @@ var MainMenuLayer = cc.Layer.extend({
     /**@type {cc.Layer} 触摸层 */
     _touchLayer: null,
     ctor: function () {
-        console.log("MainMenuLayer ctor");
         //调用父类ctor方法。结合下面MainMenuScene中的onEnter 可以得出：this._super() 调用父类当前方法。
         this._super();
-        console.log("1");
-        console.log(String(LoadSetting));
         //读取游戏设置，这个方法写在了设置界面里
         LoadSetting();
-        console.log("2");
         //添加背景层
         this.addBackgroundLayer();
-        console.log("3");
         //添加触摸层
         this.addTouchLayer();
-        console.log("MainMenuLayer End");
     },
     /**添加背景层 */
     addBackgroundLayer: function () {
@@ -46,7 +40,6 @@ var MainMenuLayer = cc.Layer.extend({
 // 定义一个场景，继承自cc.Scene
 var MainMenuScene = cc.Scene.extend({
     onEnter: function () {
-        console.log("MainMenuScene");
         //调用父类的onEnter()方法。
         this._super();
         /**@type {cc.Layer} 主界面 */

@@ -53,7 +53,6 @@
  */
 
 cc.game.onStart = function(){
-    console.log("onStart");
     if(!cc.sys.isNative && document.getElementById("cocosLoading")) //If referenced loading.js, please remove it
         document.body.removeChild(document.getElementById("cocosLoading"));
 
@@ -71,11 +70,9 @@ cc.game.onStart = function(){
     cc.view.resizeWithBrowserSize(true);
     //load resources
     cc.LoaderScene.preload(g_resources, function () {
-        console.log("cc.LoaderScene.preload");
         // cc.director.runScene(new HelloWorldScene());
         //修改成主界面成
         cc.director.runScene(new MainMenuScene());
     }, this);
-    console.log("onStart End");
 };
 cc.game.run();

@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-28 20:08:34
+ * @LastEditTime: 2023-09-28 20:12:54
  * @FilePath: \MoonWarriors\src\setting\layer\STTouchLayer.js
  * @Email: 763103245@qq.com
  */
@@ -21,9 +21,9 @@ var LoadSetting = function (bc) {
     //     GC.GAMESETTINGS.CURRENTLEVEL = data.level;
     // };
     //读取配置文件
-    // cc.loader.loadJson(res.settingsData, function (err, data) {
-    console.log(String(cc.loader.load));
-    cc.loader.load(res.settingsData, function (err, data) {
+    cc.loader.loadJson(res.settingsData, function (err, data) {
+    // console.log(String(cc.loader.load));
+    // cc.loader.load(res.settingsData, function (err, data) {
         if (err) {
             // cc.log("加载设置数据失败：" + err);
             console.log("加载设置数据失败：" + err);
@@ -33,8 +33,6 @@ var LoadSetting = function (bc) {
                 "sound": GC.SOUND_ON,
                 "level": GC.GAMESETTINGS.CURRENTLEVEL,
             };
-            var _data = data;
-            data = _data.json;
             //循环所有的参数
             for (var key in keySetting) {
                 //判断当前参数是否有保存的参数
@@ -42,11 +40,6 @@ var LoadSetting = function (bc) {
                     //设置对应参数为保存值
                     keySetting[key] = data[key];
                 };
-            };
-            console.log("11111111111");
-            console.log(String(_data));
-            for (var key in data){
-                console.log(key + ": " + data.json[key]);
             };
             //如果有传入回调方法，则将保存的设置参数传入回调
             if (bc) bc(data);
