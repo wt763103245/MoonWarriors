@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 16:35:18
- * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\BulletSprite.js
+ * @LastEditTime: 2023-10-16 16:38:20
+ * @FilePath: \MoonWarriors\src\gamePlay\sprite\BulletSprite.js
  * @Email: 763103245@qq.com
  */
 /**子弹精灵 */
@@ -53,8 +53,8 @@ BulletSprite.getOrCreateBullet = function (bulletSpeed, weaponType, attackMode, 
                 selChild.active = true;
                 selChild.HP = 1;
                 return selChild;
-            }
-        }
+            };
+        };
         //或者是敌人的子弹
     } else {
         for (var j = 0; j < GC.CONTAINER.ENEMY_BULLETS.length; j++) {
