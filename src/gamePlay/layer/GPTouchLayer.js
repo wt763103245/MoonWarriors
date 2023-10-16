@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 17:27:01
- * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\layer\GPTouchLayer.js
+ * @LastEditTime: 2023-10-16 16:46:08
+ * @FilePath: \MoonWarriors\src\gamePlay\layer\GPTouchLayer.js
  * @Email: 763103245@qq.com
  */
 //游戏状态
@@ -264,16 +264,18 @@ var GPTouchLayer = cc.Layer.extend({
                     bulletChild.hurt();
                     //敌机受到伤害
                     selChild.hurt();
-                }
-            }
+                };
+            };
             //敌机与玩家是否碰撞
-            //玩家是否启用，没有启用的情况应该是刚复活的无敌时间
-            if (locShip.active && this.collide(selChild, locShip)) {
+            if (this.collide(selChild, locShip)) {
+                //玩家是否启用，没有启用的情况应该是刚复活的无敌时间
+                if (locShip.active) {
+                    //玩家受到伤害
+                    locShip.hurt();
+                };
                 //敌机受到伤害
                 selChild.hurt();
-                //玩家受到伤害
-                locShip.hurt();
-            }
+            };
         }
         //检测玩家与敌机的子弹是否碰撞
         //玩家是否启用

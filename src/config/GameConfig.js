@@ -76,9 +76,13 @@ GC.ENEMY_ATTACK_MODE = {
 
 /**标签 */
 GC.UNIT_TAG = {
+    /**敌人的子弹 */
     ENMEY_BULLET: 900,
+    /**玩家的子弹 */
     PLAYER_BULLET: 901,
+    /**敌人 */
     ENEMY: 1000,
+    /**玩家 */
     PLAYER: 1001
 };
 
