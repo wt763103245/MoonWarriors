@@ -72,8 +72,8 @@ ExplosionSprite.getOrCreateExplosion = function () {
             selChild.play();
             //获得这个爆炸动画
             return selChild;
-        }
-    }
+        };
+    };
     /**@type {cc.Sprite|ExplosionSprite} 没有获得到缓存中的爆炸缓存，重新创建一个 */
     selChild = ExplosionSprite.create();
     //播放这个动画
@@ -101,5 +101,5 @@ ExplosionSprite.preSet = function () {
         explosion.visible = false;
         /**@type {Boolean} 禁用 */
         explosion.active = false;
-    }
+    };
 };

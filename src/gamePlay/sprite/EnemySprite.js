@@ -2,7 +2,7 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-10-16 17:07:08
+ * @LastEditTime: 2023-10-16 17:12:15
  * @FilePath: \MoonWarriors\src\gamePlay\sprite\EnemySprite.js
  * @Email: 763103245@qq.com
  */
@@ -124,14 +124,17 @@ EnemySprite.getOrCreateEnemy = function (arg) {
     GC.ACTIVE_ENEMIES++;
     return selChild;
 };
-
+/**修改敌机精灵创建方法
+ * @param {*} arg 
+ * @returns {EnemySprite|cc.Sprite} 爆炸精灵对象
+ */
 EnemySprite.create = function (arg) {
     var enemy = new EnemySprite(arg);
     g_GPTouchLayer.addEnemy(enemy, enemy.zOrder, GC.UNIT_TAG.ENEMY);
     GC.CONTAINER.ENEMIES.push(enemy);
     return enemy;
 };
-
+/**预设3个敌机对象，用来快速调用 */
 EnemySprite.preSet = function () {
     var enemy = null;
     for (var i = 0; i < 3; i++) {
