@@ -39,8 +39,8 @@ GC.GAME_STATE = GC.GAME_STATE_ENUM.HOME;
 GC._LIFE = 3;
 /**生命值 */
 GC.LIFE = GC._LIFE;
-/**默认血量 */
-GC.HP = 5
+/**默认血量，暂时修改成只有1点血，表示被击中或者碰撞1次就会死，然后减少生命值 */
+GC.HP = 1
 /**@type {Number} 玩家射速 */
 GC.PlayerShootingSpeed = 1 / 60;
 /**当前场景存在敌人数量 */
