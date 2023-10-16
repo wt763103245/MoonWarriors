@@ -16,7 +16,8 @@ var ABBackgroundLayer = cc.Layer.extend({
     initBackground: function () {
         /**@type {String} 添加图片缓存 */
         var cacheImage = cc.textureCache.addImage(res.mm_bg_png);
-        this._sptBg = cc.Sprite.create(cacheImage);
+        // this._sptBg = cc.Sprite.create(cacheImage);
+        this._sptBg = new cc.Sprite(cacheImage);
         this._sptBg.attr({
             x: GC.w_2,
             y: GC.h_2
