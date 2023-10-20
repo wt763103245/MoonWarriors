@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 16:47:38
- * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\ExplosionSprite.js
+ * @LastEditTime: 2023-10-20 18:57:27
+ * @FilePath: \MoonWarriors\src\gamePlay\sprite\ExplosionSprite.js
  * @Email: 763103245@qq.com
  */
 /**@type {cc.Sprite} 爆炸动画精灵 */
@@ -18,28 +18,27 @@ var ExplosionSprite = cc.Sprite.extend({
         this._super(pFrame);
         //设置渲染对象的混合函数，使用对方透明度与自身颜色混合
         this.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
-
         //爆炸序列帧相关
         /**@type {String[]} 爆炸效果序列帧图片 */
         var animFrames = [];
-        //循环34次，从1到34
-        for (var i = 1; i < 35; i++) {
+        //循环35次，从1到35
+        for (var i = 1; i <= 35; i++) {
             /**@type {String} 爆炸序列帧图片 */
             var str = "explosion_" + (i < 10 ? ("0" + i) : i) + ".png";
             /**@type {cc.cc.SpriteFrame} 获得序列帧缓存 */
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
             //添加到爆炸序列帧列表中
             animFrames.push(frame);
-        }
-        /**@type {cc.Animation} 爆炸序列帧，每隔0.04 */
-        this.animation = new cc.Animation(animFrames, 0.04);
+        };
+        /**@type {cc.Animate} 爆炸序列帧，每隔0.04 */
+        this.animation = cc.animate(new cc.Animation(animFrames, 0.04));
     },
     /**播放爆炸动画 */
     play: function () {
         //播放动画，按循序执行，播放爆炸序列帧，然后执行销毁方法
         this.runAction(cc.sequence(
             //爆炸序列帧
-            cc.animate(this.animation),
+            this.animation,
             //回调销毁方法
             cc.callFunc(this.destroy, this)
         ));
@@ -47,7 +46,7 @@ var ExplosionSprite = cc.Sprite.extend({
     /**销毁爆炸效果，只是隐藏，方便在缓存中调用 */
     destroy: function () {
         /**@type {Boolean} 隐藏这个爆炸效果 */
-        this.visible = false;
+        this.setVisible(false);
         /**@type {Boolean} 取消启用这个爆炸 */
         this.active = false;
     }
@@ -65,7 +64,7 @@ ExplosionSprite.getOrCreateExplosion = function () {
         //判断是否已经启用
         if (selChild.active == false) {
             /**@type {Boolean} 显示这个爆炸效果 */
-            selChild.visible = true;
+            selChild.setVisible(true);
             /**@type {Boolean} 启用这个爆炸效果 */
             selChild.active = true;
             //播放这个爆炸动画
@@ -98,7 +97,7 @@ ExplosionSprite.preSet = function () {
         /**@type {cc.Sprite|ExplosionSprite} 爆炸效果精灵创建 */
         var explosion = ExplosionSprite.create();
         /**@type {Boolean} 隐藏 */
-        explosion.visible = false;
+        explosion.setVisible(false);
         /**@type {Boolean} 禁用 */
         explosion.active = false;
     };
