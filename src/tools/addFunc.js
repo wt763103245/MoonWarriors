@@ -28,24 +28,8 @@ if (typeof Object.assign !== 'function') {
 
 //添加cc.log
 if (cc) {
-    if (!cc.log){
-        cc.log = function (...showStr) {
-            for (let i = 0; i < showStr.length; i++) {
-                var str = showStr[i];
-                if (typeof str != 'object'){
-                    console.log(str);
-                }else{
-                    console.log("{");
-                    for (let key in str) {
-                        cc.log("    ", key + ": " + str[key]);
-                    };
-                    console.log("}");
-                };
-            };
-        };
-    };
-    if (cc.Sprite){
-        if (cc.Sprite.create){
+    if (cc.Sprite) {
+        if (cc.Sprite.create) {
             /**
              * Create a sprite with image path or frame name or texture or spriteFrame.
              * @deprecated since v3.0, please use new construction instead
@@ -61,3 +45,22 @@ if (cc) {
         };
     };
 };
+
+test = {
+    log: function (...str) {
+        if (str.length) {
+            for (let i = 0; i < str.length; i++) {
+                var str = str[i];
+                if (typeof str != 'object') {
+                    console.log(str);
+                } else {
+                    console.log("{");
+                    for (let key in str) {
+                        console.log("    " + key + ": " + str[key]);
+                    };
+                    console.log("}");
+                };
+            };
+        };
+    },
+}
