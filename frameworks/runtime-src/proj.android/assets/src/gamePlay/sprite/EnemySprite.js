@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 16:43:51
- * @FilePath: \OneDrive\program\js\MoonWarriors\src\gamePlay\sprite\EnemySprite.js
+ * @LastEditTime: 2023-10-16 17:12:15
+ * @FilePath: \MoonWarriors\src\gamePlay\sprite\EnemySprite.js
  * @Email: 763103245@qq.com
  */
 /**敌人精灵 */
@@ -40,13 +40,20 @@ var EnemySprite = cc.Sprite.extend({
     update: function (dt) {
         var x = this.x;
         var y = this.y;
-        //出屏幕
+        var hp = this.HP;
+        //出屏幕，不能被攻击
         if ((x < 0 || x > 320) && (y < 0 || y > 480)) {
             this.active = false;
+        //如果在屏幕内，但是血量大于0则可以被攻击
+        } else if (!this.active && hp > 0) {
+            this.active = true;
+            return;
         };
         //生命值低于0
-        if (this.HP <= 0) {
-            this.active = false;
+        if (hp <= 0) {
+            // //不能被攻击
+            // this.active = false;
+            //销毁
             this.destroy();
         };
     },
@@ -66,7 +73,7 @@ var EnemySprite = cc.Sprite.extend({
 
         if (GC.SOUND_ON) {
             cc.audioEngine.playEffect(res.gp_explodeEffect_mp3);
-        }
+        };
         this.visible = false;
         this.active = false;
         this.stopAllActions();
@@ -117,14 +124,17 @@ EnemySprite.getOrCreateEnemy = function (arg) {
     GC.ACTIVE_ENEMIES++;
     return selChild;
 };
-
+/**修改敌机精灵创建方法
+ * @param {*} arg 
+ * @returns {EnemySprite|cc.Sprite} 爆炸精灵对象
+ */
 EnemySprite.create = function (arg) {
     var enemy = new EnemySprite(arg);
     g_GPTouchLayer.addEnemy(enemy, enemy.zOrder, GC.UNIT_TAG.ENEMY);
     GC.CONTAINER.ENEMIES.push(enemy);
     return enemy;
 };
-
+/**预设3个敌机对象，用来快速调用 */
 EnemySprite.preSet = function () {
     var enemy = null;
     for (var i = 0; i < 3; i++) {

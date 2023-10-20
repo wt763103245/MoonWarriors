@@ -12,6 +12,8 @@
     "modules" : ["cocos2d"],
 
     "jsList" : [
+        "src/tools/addFunc.js",
+
         "src/resource.js",
         
         "src/config/Level.js",

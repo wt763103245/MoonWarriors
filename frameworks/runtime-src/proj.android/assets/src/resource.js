@@ -1,4 +1,7 @@
 var res = {
+//settings Data
+    settingsData : "res/setting/data.json",
+    
     CloseNormal_png : "res/CloseNormal.png",
     CloseSelected_png : "res/CloseSelected.png",
 //shared

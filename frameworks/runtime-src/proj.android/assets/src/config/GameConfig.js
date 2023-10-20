@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 15:52:40
- * @FilePath: \OneDrive\program\js\MoonWarriors\src\config\GameConfig.js
+ * @LastEditTime: 2023-10-17 19:39:57
+ * @FilePath: \MoonWarriors\src\config\GameConfig.js
  * @Email: 763103245@qq.com
  */
 /**视窗相关参数，如果在网页就是网页宽高，如果在pc就是窗口大小，如果在手机就是手机分辨率大小 */
@@ -39,8 +39,8 @@ GC.GAME_STATE = GC.GAME_STATE_ENUM.HOME;
 GC._LIFE = 3;
 /**生命值 */
 GC.LIFE = GC._LIFE;
-/**默认血量 */
-GC.HP = 5
+/**默认血量，暂时修改成只有1点血，表示被击中或者碰撞1次就会死，然后减少生命值 */
+GC.HP = 1
 /**@type {Number} 玩家射速 */
 GC.PlayerShootingSpeed = 1 / 60;
 /**当前场景存在敌人数量 */
@@ -76,9 +76,13 @@ GC.ENEMY_ATTACK_MODE = {
 
 /**标签 */
 GC.UNIT_TAG = {
+    /**敌人的子弹 */
     ENMEY_BULLET: 900,
+    /**玩家的子弹 */
     PLAYER_BULLET: 901,
+    /**敌人 */
     ENEMY: 1000,
+    /**玩家 */
     PLAYER: 1001
 };
 

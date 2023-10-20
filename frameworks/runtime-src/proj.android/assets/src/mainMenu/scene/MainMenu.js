@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 14:21:58
- * @FilePath: \OneDrive\program\js\MoonWarriors\src\mainMenu\scene\MainMenu.js
+ * @LastEditTime: 2023-09-28 18:05:43
+ * @FilePath: \MoonWarriors\src\mainMenu\scene\MainMenu.js
  * @Email: 763103245@qq.com
  */
 // 定义一个层，继承自cc.Layer

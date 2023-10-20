@@ -2,25 +2,50 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 18:00:41
+ * @LastEditTime: 2023-10-20 19:53:31
  * @FilePath: \MoonWarriors\src\setting\layer\STTouchLayer.js
  * @Email: 763103245@qq.com
  */
 /**读取设置 */
-var LoadSetting = () => {
-    // 从本地获取保存的数据  
-    var data = localStorage.getItem(GC.FILENAME.SETTING);
-    // 如果数据存在
-    if (data) {
-        // 解析保存的数据为原始类型  
-        var data = JSON.parse(data);
-        //设置当前游戏设置
-        GC.SOUND_ON = data.sound;
-        GC.GAMESETTINGS.CURRENTLEVEL = data.level;
+var LoadSetting = function () {
+    var data = {
+        "sound": [
+            function (key) {
+                let value = cc.sys.localStorage.getItem(key);
+                if (value == "true") {
+                    value = true;
+                } else if (value == "false") {
+                    value = false;
+                } else {
+                    value = GC.SOUND_ON;
+                };
+                return value;
+            },
+            function (value) {
+                GC.SOUND_ON = value;
+            },
+        ],
+        "level": [
+            function (key) {
+                let value = cc.sys.localStorage.getItem(key);
+                value = value ? Number(value) : GC.GAMESETTINGS.CURRENTLEVEL;
+                return value;
+            },
+            function (value) {
+                GC.GAMESETTINGS.CURRENTLEVEL = value;
+            },
+        ],
+    };
+    for (var key in data) {
+        let _data = data[key];
+        let _value = _data[0](key);
+        _data[1](_value);
     };
 }
 /**设置界面触摸层 */
 var STTouchLayer = cc.Layer.extend({
+    /**设置相关参数 */
+    _data: {},
     ctor: function () {
         this._super();
         //初始化触摸层ui相关
@@ -108,16 +133,23 @@ var STTouchLayer = cc.Layer.extend({
         this.saveSetting();
     },
     /**读取设置 */
-    loadSetting() {
+    loadSetting: function () {
+        //读取设置参数
         LoadSetting();
     },
     /**保存设置 */
-    saveSetting() {
-        // 将数据保存到本地  
-        localStorage.setItem(GC.FILENAME.SETTING, JSON.stringify({
-            sound: GC.SOUND_ON,
-            level: GC.GAMESETTINGS.CURRENTLEVEL,
-        }));
+    saveSetting: function () {
+        var data = {
+            "sound": function (key) {
+                cc.sys.localStorage.setItem(key, GC.SOUND_ON ? "true" : "false");
+            },
+            "level": function (key) {
+                cc.sys.localStorage.setItem(key, GC.GAMESETTINGS.CURRENTLEVEL.toString());
+            },
+        };
+        for (var key in data) {
+            data[key](key);
+        };
     },
     /**返回菜单按钮回调 */
     onBackCallback: function () {
