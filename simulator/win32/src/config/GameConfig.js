@@ -2,8 +2,8 @@
  * @Author: 萌新王
  * @Date: 2023-09-04 17:18:03
  * @LastEditors: 萌新王
- * @LastEditTime: 2023-09-22 15:52:40
- * @FilePath: \OneDrive\program\js\MoonWarriors\src\config\GameConfig.js
+ * @LastEditTime: 2023-10-17 19:39:57
+ * @FilePath: \MoonWarriors\src\config\GameConfig.js
  * @Email: 763103245@qq.com
  */
 /**视窗相关参数，如果在网页就是网页宽高，如果在pc就是窗口大小，如果在手机就是手机分辨率大小 */
