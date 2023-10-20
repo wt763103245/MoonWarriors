@@ -30,16 +30,11 @@ var ExplosionSprite = cc.Sprite.extend({
             //添加到爆炸序列帧列表中
             animFrames.push(frame);
         };
-        /**@type {cc.Animation} 爆炸序列帧，每隔0.04 */
+        /**@type {cc.Animate} 爆炸序列帧，每隔0.04 */
         this.animation = cc.animate(new cc.Animation(animFrames, 0.04));
-        // this.animation.setRestoreOriginalFrame(true);
-        // this.animation = ExplosionAnimation.clone();
     },
     /**播放爆炸动画 */
     play: function () {
-        console.log("开始播放爆炸动画");
-        // test.log(this.getPosition());
-        // test.log(this.animation);
         //播放动画，按循序执行，播放爆炸序列帧，然后执行销毁方法
         this.runAction(cc.sequence(
             //爆炸序列帧
@@ -47,16 +42,13 @@ var ExplosionSprite = cc.Sprite.extend({
             //回调销毁方法
             cc.callFunc(this.destroy, this)
         ));
-        console.log("爆炸动画代码执行完毕");
     },
     /**销毁爆炸效果，只是隐藏，方便在缓存中调用 */
     destroy: function () {
-        console.log("销毁爆炸效果");
         /**@type {Boolean} 隐藏这个爆炸效果 */
         this.setVisible(false);
         /**@type {Boolean} 取消启用这个爆炸 */
         this.active = false;
-        console.log("销毁成功");
     }
 });
 /**得到没有启用的爆炸效果精灵，用来获得缓存中已经保存的爆炸动画
@@ -75,14 +67,12 @@ ExplosionSprite.getOrCreateExplosion = function () {
             selChild.setVisible(true);
             /**@type {Boolean} 启用这个爆炸效果 */
             selChild.active = true;
-            console.log("已经存在");
             //播放这个爆炸动画
             selChild.play();
             //获得这个爆炸动画
             return selChild;
         };
     };
-    console.log("新建");
     /**@type {cc.Sprite|ExplosionSprite} 没有获得到缓存中的爆炸缓存，重新创建一个 */
     selChild = ExplosionSprite.create();
     //播放这个动画

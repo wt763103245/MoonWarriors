@@ -1,4 +1,4 @@
-﻿生成启动时间为 2023/10/20 18:58:38。
+﻿生成启动时间为 2023/10/20 19:03:13。
      1>项目“C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\MoonWarriors.vcxproj”在节点 2 上(Build 个目标)。
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1193,5): warning MSB8012: TargetPath(C:\test\MoonWarriors\frameworks\runtime-src\proj.win32\Debug.win32\MoonWarriors.exe) does not match the Linker's OutputFile property value (C:\test\MoonWarriors\simulator\win32\MoonWarriors.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
      1>PreLinkEvent:
@@ -40,4 +40,4 @@
 
 生成成功。
 
-已用时间 00:00:06.32
+已用时间 00:00:05.54
